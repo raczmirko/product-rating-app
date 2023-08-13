@@ -1,34 +1,23 @@
 package hu.okrim.productratingapp.entity;
 
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
-
+@Entity
 public class Rating {
-    private int person;
-    private int product;
+    @EmbeddedId
+    private RatingId id;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date date;
-    private int taste;
-    private int smell;
+    private byte taste;
+    private byte smell;
     private String remark;
 
-    public int getPerson() {
-        return person;
+    public Rating() {
     }
-
-    public void setPerson(int person) {
-        this.person = person;
-    }
-
-    public int getProduct() {
-        return product;
-    }
-
-    public void setProduct(int product) {
-        this.product = product;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -37,19 +26,19 @@ public class Rating {
         this.date = date;
     }
 
-    public int getTaste() {
+    public Byte getTaste() {
         return taste;
     }
 
-    public void setTaste(int taste) {
+    public void setTaste(byte taste) {
         this.taste = taste;
     }
 
-    public int getSmell() {
+    public Byte getSmell() {
         return smell;
     }
 
-    public void setSmell(int smell) {
+    public void setSmell(byte smell) {
         this.smell = smell;
     }
 

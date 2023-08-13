@@ -1,9 +1,16 @@
 package hu.okrim.productratingapp.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+@Entity
 public class Category {
+    @Id
     private String id;
     private String name;
     private String description;
+
+    public Category() {
+    }
 
     public String getId() {
         return id;

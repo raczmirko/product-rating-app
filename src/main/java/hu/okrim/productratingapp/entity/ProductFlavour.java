@@ -1,22 +1,22 @@
 package hu.okrim.productratingapp.entity;
 
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.IdClass;
+
+@Entity
 public class ProductFlavour {
-    private int product;
-    private int flavour;
+    @EmbeddedId
+    private ProductFlavourId id;
 
-    public int getProduct() {
-        return product;
+    public ProductFlavour() {
     }
 
-    public void setProduct(int product) {
-        this.product = product;
+    public ProductFlavourId getId() {
+        return id;
     }
 
-    public int getFlavour() {
-        return flavour;
-    }
-
-    public void setFlavour(int flavour) {
-        this.flavour = flavour;
+    public void setId(ProductFlavourId id) {
+        this.id = id;
     }
 }
