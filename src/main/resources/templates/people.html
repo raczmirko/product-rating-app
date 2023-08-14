@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>People</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    </head>
+    <body>
+        <div th:replace="~{_header :: header}"></div>
+        <main>
+            <section>
+                <h3>Add a new person to the database:</h3>
+                <form th:action="@{/people/add-person}" method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <button type="submit">Add</button>
+                </form>
+                <h3>People already in the database:</h3>
+                <div th:each="person : ${people}">a
+                    <p th:text="${person.name}"></p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 Mirkó Rácz. All rights reserved.</p>
+        </footer>
+    </body>
+</html>
