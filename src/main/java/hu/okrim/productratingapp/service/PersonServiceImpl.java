@@ -31,4 +31,9 @@ public class PersonServiceImpl implements PersonService{
         }
         return peopleList;
     }
+
+    @Override
+    public void deletePerson(Person person) {
+        personRepository.delete(person);
+    }
 }

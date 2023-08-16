@@ -14,4 +14,6 @@ public interface PersonService {
     Person addPerson(Person person);
 
     List<Person> getAllPeople();
+
+    void deletePerson(Person person);
 }

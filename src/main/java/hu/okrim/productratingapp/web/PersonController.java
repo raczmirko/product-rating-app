@@ -39,6 +39,12 @@ public class PersonController {
         redirectAttributes.addFlashAttribute("status", status);
         return "redirect:/people";
     }
+    @PostMapping("/delete-person")
+    public String deletePerson(@RequestParam("person") Person person, RedirectAttributes redirectAttributes){
+        personService.deletePerson(person);
+        redirectAttributes.addFlashAttribute("status", Constants.SUCCESS_STATUS);
+        return "redirect:/people";
+    }
 //    @GetMapping
 //    public String getForm(Model model, @RequestParam(required = false) String id){
 //        return "people";

@@ -5,23 +5,24 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>People</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
     </head>
     <body>
         <div th:replace="~{_header :: header}"></div>
         <div class="alert-success" th:if="${status} == 'success'" style="background-color: green; color: black; padding: 5px">
-            <strong> You successfully added the person to the database! </strong>
+            <strong> Action succeeded. </strong>
         </div>
         <div th:if="${status} == 'failed'" style="background-color: red; color: white; padding: 5px">
-            <strong > You failed to add the person. Try again later! </strong>
+            <strong > Action failed. Try again later! </strong>
         </div>
         <main>
             <section>
                 <h3>Add a new person to the database:</h3>
                 <form th:action="@{/people/add-person}" method="post">
                     <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                    <button type="submit">Add</button>
+                    <input type="text" id="name" name="name" style="width:50%" required>
+                    <button type="submit" class="addButton">Add</button>
                 </form>
                 <h3>People already in the database:</h3>
                 <table>
@@ -32,6 +33,12 @@
                     <tr th:each="person : ${people}">
                         <td th:text="${person.id}"></td>
                         <td th:text="${person.name}"></td>
+                        <td>
+                            <form th:action="@{/people/delete-person}" method="post">
+                                <input type="hidden" name="person" th:value="${person.id}" />
+                                <button type="submit" class="deleteButton">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 </table>
             </section>
