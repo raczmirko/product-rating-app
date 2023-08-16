@@ -9,6 +9,12 @@
     </head>
     <body>
         <div th:replace="~{_header :: header}"></div>
+        <div class="alert-success" th:if="${status} == 'success'" style="background-color: green; color: black; padding: 5px">
+            <strong> You successfully added the person to the database! </strong>
+        </div>
+        <div th:if="${status} == 'failed'" style="background-color: red; color: white; padding: 5px">
+            <strong > You failed to add the person. Try again later! </strong>
+        </div>
         <main>
             <section>
                 <h3>Add a new person to the database:</h3>
@@ -18,9 +24,16 @@
                     <button type="submit">Add</button>
                 </form>
                 <h3>People already in the database:</h3>
-                <div th:each="person : ${people}">a
-                    <p th:text="${person.name}"></p>
-                </div>
+                <table>
+                    <tr class="head">
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                    <tr th:each="person : ${people}">
+                        <td th:text="${person.id}"></td>
+                        <td th:text="${person.name}"></td>
+                    </tr>
+                </table>
             </section>
         </main>
 

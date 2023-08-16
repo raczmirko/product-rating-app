@@ -5,6 +5,7 @@ import hu.okrim.productratingapp.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,6 +25,10 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     public List<Person> getAllPeople() {
-        return null;
+        List<Person> peopleList = new ArrayList<>();
+        for (Person person : personRepository.findAll()) {
+            peopleList.add(person);
+        }
+        return peopleList;
     }
 }
