@@ -8,12 +8,6 @@ public class ProductFlavourId implements Serializable {
 
     public ProductFlavourId() {
     }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
     public Integer getProduct() {
         return product;
     }

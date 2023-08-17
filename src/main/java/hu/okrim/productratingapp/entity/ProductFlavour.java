@@ -2,7 +2,6 @@ package hu.okrim.productratingapp.entity;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.IdClass;
 
 @Entity
 public class ProductFlavour {
