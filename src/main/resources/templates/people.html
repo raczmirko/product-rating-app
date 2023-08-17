@@ -34,7 +34,7 @@
                         <td th:text="${person.id}"></td>
                         <td th:text="${person.name}"></td>
                         <td>
-                            <form th:action="@{/people/delete-person}" method="post">
+                            <form th:action="@{/people/delete-person}" method="post" onsubmit="return confirmDelete();">
                                 <input type="hidden" name="person" th:value="${person.id}" />
                                 <button type="submit" class="deleteButton">Delete</button>
                             </form>
@@ -47,5 +47,10 @@
         <footer>
             <p>&copy; 2023 Mirkó Rácz. All rights reserved.</p>
         </footer>
+        <script>
+            function confirmDelete() {
+                return confirm("Are you sure you want to delete this person?");
+            }
+        </script>
     </body>
 </html>
