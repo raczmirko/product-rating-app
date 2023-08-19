@@ -21,7 +21,7 @@
                 <h3>Add a new person to the database:</h3>
                 <form th:action="@{/people/add-person}" method="post">
                     <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" style="width:50%" required>
+                    <input type="text" id="name" name="name" style="width:50%"  maxlength="50" required>
                     <button type="submit" class="addButton">Add</button>
                 </form>
                 <h3>People already in the database:</h3>
