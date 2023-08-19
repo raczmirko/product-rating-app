@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Brands</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    </head>
+    <body>
+        <div th:replace="~{_header :: header}"></div>
+        <div class="alert-success" th:if="${status} == 'success'" style="background-color: green; color: black; padding: 5px">
+            <strong> Action succeeded. </strong>
+        </div>
+        <div th:if="${status} == 'failed'" style="background-color: red; color: white; padding: 5px">
+            <strong > Action failed. Try again later! </strong>
+        </div>
+        <main>
+            <section>
+                <h3>Add a new brand to the database:</h3>
+                <form th:action="@{/brands/add-brand}" method="post">
+                    <label for="id">ID (auto-generated):</label>
+                    <input type="text" id="id" name="id" style="width:50%"  maxlength="50" readonly>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" style="width:50%"  maxlength="50" required onkeyup="generateId()">
+                    <button type="submit" class="addButton">Add</button>
+                </form>
+                <h3>Brands already in the database:</h3>
+                <table>
+                    <tr class="head">
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                    <tr th:each="brand : ${brands}">
+                        <td th:text="${brand.id}"></td>
+                        <td th:text="${brand.name}"></td>
+                        <td>
+                        <form th:action="@{/brands/delete-brand}" method="post" onsubmit="return confirmDelete();">
+                            <input type="hidden" name="brand" th:value="${brand.id}" />
+                            <button type="submit" class="deleteButton">Delete</button>
+                        </form>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2023 Mirkó Rácz. All rights reserved.</p>
+        </footer>
+        <script>
+            function confirmDelete() {
+            return confirm("Are you sure you want to delete this brand?");
+            }
+        </script>
+        <script>
+            function generateId() {
+            const nameInput = document.getElementById("name");
+            const idInput = document.getElementById("id");
+
+            const nameValue = nameInput.value.toLowerCase().replace(/[^a-z0-9]+/g, '');
+            idInput.value = nameValue;
+            }
+        </script>
+    </body>
+</html>
