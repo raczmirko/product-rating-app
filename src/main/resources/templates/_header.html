@@ -2,17 +2,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <header>
-    <h1>ProductRatingApp by Mirkó Rácz</h1>
-    <nav>
-        <ul>
-            <li><a href="@{/}">New Rating</a></li>
-            <li><a href="#">Ratings</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Product Flavours</a></li>
-            <li><a href="#">Flavours</a></li>
-            <li><a th:href="@{/people}">People</a></li>
-            <li><a href="#">Categories</a></li>
-            <li><a href="#">Brands</a></li>
+<!--    <nav>-->
+<!--        <ul>-->
+<!--            <li><a href="@{/}">New Rating</a></li>-->
+<!--            <li>-->
+<!--                Tables-->
+<!--                <ul>-->
+                    
+<!--                </ul>-->
+<!--            </li>-->
+
+<!--        </ul>-->
+<!--    </nav>-->
+    <nav class="menu">
+        <h1 class="menu-title">Product-Rating-App </h1>
+        <ul class="menu-items">
+            <li class="menu-item"><a href="/home">New Rating</a></li>
+            <li class="menu-item">
+                <a href="#">Tables</a>
+                <ul>
+                    <li><a href="#">Ratings</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Product Flavours</a></li>
+                    <li><a href="#">Flavours</a></li>
+                    <li><a th:href="@{/people}">People</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Brands</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </header>
