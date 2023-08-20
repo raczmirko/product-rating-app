@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public interface BrandService {
-    Brand getBrandById(String id);
+    Brand getBrandById(Integer id);
 
     Brand addBrand(Brand brand);
 

@@ -12,7 +12,7 @@ public class BrandServiceImpl implements BrandService{
     @Autowired
     BrandRepository brandRepository;
     @Override
-    public Brand getBrandById(String id) {
+    public Brand getBrandById(Integer id) {
         return null;
     }
     @Override

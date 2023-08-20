@@ -26,9 +26,8 @@ public class BrandController {
         return "brands";
     }
     @PostMapping("/add-brand")
-    public String addBrand(@RequestParam("id") String id, @RequestParam("name") String name, RedirectAttributes redirectAttributes) {
+    public String addBrand(@RequestParam("name") String name, RedirectAttributes redirectAttributes) {
         Brand brand = new Brand();
-        brand.setId(id);
         brand.setName(name);
         brandService.addBrand(brand);
         String status = Constants.SUCCESS_STATUS;
