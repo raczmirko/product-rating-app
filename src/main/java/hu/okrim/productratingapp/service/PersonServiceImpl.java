@@ -14,8 +14,7 @@ public class PersonServiceImpl implements PersonService{
     PersonRepository personRepository;
     @Override
     public Person getPersonById(Integer id) {
-        return personRepository.findById(id).orElseThrow(()
-                -> new EntityNotFoundException("Person with id " + id + " not found"));
+        return personRepository.findById(id).orElse(null);
     }
     @Override
     public Person addPerson(Person person) {

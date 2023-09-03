@@ -16,8 +16,7 @@ public class CategoryServiceImpl implements CategoryService{
     CategoryRepository categoryRepository;
     @Override
     public Category getCategoryById(Integer id) {
-        return categoryRepository.findById(id).orElseThrow(()
-                -> new EntityNotFoundException("Category with id " + id + " not found"));
+        return categoryRepository.findById(id).orElse(null);
     }
     @Override
     public Category addCategory(Category brand) {

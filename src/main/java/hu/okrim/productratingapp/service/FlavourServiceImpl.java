@@ -16,8 +16,7 @@ public class FlavourServiceImpl implements FlavourService{
     FlavourRepository flavourRepository;
 
     public Flavour getFlavourById(Integer id) {
-        return flavourRepository.findById(id).orElseThrow(()
-                -> new EntityNotFoundException("Flavour with id " + id + " not found"));
+        return flavourRepository.findById(id).orElse(null);
     }
 
     @Override

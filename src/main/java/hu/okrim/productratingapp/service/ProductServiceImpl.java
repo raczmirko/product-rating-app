@@ -15,8 +15,7 @@ public class ProductServiceImpl implements ProductService{
     ProductRepository productRepository;
     @Override
     public Product getProductById(Integer id) {
-        return productRepository.findById(id).orElseThrow(()
-                -> new EntityNotFoundException("Product with id " + id + " not found"));
+        return productRepository.findById(id).orElse(null);
     }
     @Override
     public Product addProduct(Product product) {
