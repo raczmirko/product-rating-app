@@ -9,9 +9,9 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String brand;
+    private Integer brand;
     private String name;
-    private String category;
+    private Integer category;
     private boolean isDrink;
 
     public Product() {
@@ -25,11 +25,11 @@ public class Product {
         this.id = id;
     }
 
-    public String getBrand() {
+    public Integer getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public void setBrand(Integer brand) {
         this.brand = brand;
     }
 
@@ -41,11 +41,11 @@ public class Product {
         this.name = name;
     }
 
-    public String getCategory() {
+    public Integer getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Integer category) {
         this.category = category;
     }
 
