@@ -6,14 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonServiceImpl implements PersonService{
     @Autowired
     PersonRepository personRepository;
     @Override
-    public Person getPersonById(String id) {
-        return null;
+    public Optional<Person> getPersonById(Integer id) {
+        return personRepository.findById(id);
     }
     @Override
     public Person addPerson(Person person) {

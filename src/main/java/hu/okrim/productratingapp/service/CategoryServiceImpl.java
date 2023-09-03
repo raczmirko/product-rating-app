@@ -7,14 +7,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryServiceImpl implements CategoryService{
     @Autowired
     CategoryRepository categoryRepository;
     @Override
-    public Category getCategoryById(Integer id) {
-        return null;
+    public Optional<Category> getCategoryById(Integer id) {
+        return categoryRepository.findById(id);
     }
     @Override
     public Category addCategory(Category brand) {

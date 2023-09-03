@@ -7,13 +7,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class BrandServiceImpl implements BrandService{
     @Autowired
     BrandRepository brandRepository;
     @Override
-    public Brand getBrandById(Integer id) {
-        return null;
+    public Optional<Brand> getBrandById(Integer id) {
+        return brandRepository.findById(id);
     }
     @Override
     public Brand addBrand(Brand brand) {

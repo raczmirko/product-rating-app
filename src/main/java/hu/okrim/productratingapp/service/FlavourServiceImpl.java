@@ -1,22 +1,21 @@
 package hu.okrim.productratingapp.service;
 
 import hu.okrim.productratingapp.entity.Flavour;
-import hu.okrim.productratingapp.entity.Person;
 import hu.okrim.productratingapp.repository.FlavourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FlavourServiceImpl implements FlavourService{
     @Autowired
     FlavourRepository flavourRepository;
 
-    @Override
-    public Flavour getFlavourById(String id) {
-        return null;
+    public Optional<Flavour> getFlavourById(Integer id) {
+        return flavourRepository.findById(id);
     }
 
     @Override
