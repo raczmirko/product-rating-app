@@ -1,17 +1,19 @@
 package hu.okrim.productratingapp.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 @Entity
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer brand;
+    @ManyToOne
+    @JoinColumn(name = "brand")
+    private Brand brand;
     private String name;
-    private Integer category;
+    @ManyToOne
+    @JoinColumn(name = "category")
+    private Category category;
     private boolean isDrink;
 
     public Product() {
@@ -25,11 +27,11 @@ public class Product {
         this.id = id;
     }
 
-    public Integer getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(Integer brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 
@@ -41,11 +43,11 @@ public class Product {
         this.name = name;
     }
 
-    public Integer getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Integer category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -53,7 +55,7 @@ public class Product {
         return isDrink;
     }
 
-    public void setDrink(boolean drink) {
+    public void setIsDrink(boolean drink) {
         isDrink = drink;
     }
 }
