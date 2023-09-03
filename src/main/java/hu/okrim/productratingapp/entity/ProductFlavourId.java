@@ -3,29 +3,29 @@ import jakarta.persistence.IdClass;
 import java.io.Serializable;
 @IdClass(ProductFlavourId.class)
 public class ProductFlavourId implements Serializable {
-    private Integer product;
-    private Integer flavour;
+    private Product product;
+    private Flavour flavour;
 
     public ProductFlavourId() {
     }
 
-    public ProductFlavourId(Integer product,Integer flavour){
+    public ProductFlavourId(Product product,Flavour flavour){
         this.setProduct(product);
         this.setFlavour(flavour);
     }
-    public Integer getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(Integer product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 
-    public Integer getFlavour() {
+    public Flavour getFlavour() {
         return flavour;
     }
 
-    public void setFlavour(Integer flavour) {
+    public void setFlavour(Flavour flavour) {
         this.flavour = flavour;
     }
 }
