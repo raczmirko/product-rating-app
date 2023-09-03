@@ -8,6 +8,11 @@ public class ProductFlavourId implements Serializable {
 
     public ProductFlavourId() {
     }
+
+    public ProductFlavourId(Integer product,Integer flavour){
+        this.setProduct(product);
+        this.setFlavour(flavour);
+    }
     public Integer getProduct() {
         return product;
     }
