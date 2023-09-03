@@ -17,31 +17,31 @@
     <strong > Action failed. Try again later! </strong>
 </div>
 <main>
-    <section>
-        <h3>Add a new flavour to the database:</h3>
-        <form th:action="@{/flavours/add-flavour}" method="post">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" style="width:50%"  maxlength="50" required>
-            <button type="submit" class="addButton">Add</button>
-        </form>
-        <h3>Flavours already in the database:</h3>
-        <table>
-            <tr class="head">
-                <th>ID</th>
-                <th>Name</th>
-            </tr>
-            <tr th:each="flavour : ${flavours}">
-                <td th:text="${flavour.id}"></td>
-                <td th:text="${flavour.name}"></td>
-                <td>
-                    <form th:action="@{/flavours/delete-flavour}" method="post" onsubmit="return confirmDelete();">
-                        <input type="hidden" name="flavour" th:value="${flavour.id}" />
-                        <button type="submit" class="deleteButton">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        </table>
-    </section>
+    <h3>Add a new flavour to the database:</h3>
+    <hr class="gradient-line">
+    <form th:action="@{/flavours/add-flavour}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" style="width:50%"  maxlength="50" required>
+        <button type="submit" class="addButton">Add</button>
+    </form>
+    <hr class="gradient-line">
+    <h3>Flavours already in the database:</h3>
+    <table>
+        <tr class="head">
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+        <tr th:each="flavour : ${flavours}">
+            <td th:text="${flavour.id}"></td>
+            <td th:text="${flavour.name}"></td>
+            <td>
+                <form th:action="@{/flavours/delete-flavour}" method="post" onsubmit="return confirmDelete();">
+                    <input type="hidden" name="flavour" th:value="${flavour.id}" />
+                    <button type="submit" class="deleteButton">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
 </main>
 
 <footer>
