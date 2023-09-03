@@ -1,28 +1,27 @@
 package hu.okrim.productratingapp.entity;
 
 import jakarta.persistence.IdClass;
-
 @IdClass(RatingId.class)
 public class RatingId {
-    private Integer person;
-    private Integer product;
+    private Person person;
+    private Product product;
 
     public RatingId() {
     }
 
-    public Integer getPerson() {
+    public Person getPerson() {
         return person;
     }
 
-    public void setPerson(Integer person) {
+    public void setPerson(Person person) {
         this.person = person;
     }
 
-    public Integer getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(Integer product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 }
