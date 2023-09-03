@@ -1,6 +1,5 @@
 package hu.okrim.productratingapp.service;
 
-import hu.okrim.productratingapp.entity.Flavour;
 import hu.okrim.productratingapp.entity.ProductFlavour;
 import hu.okrim.productratingapp.entity.ProductFlavourId;
 import hu.okrim.productratingapp.repository.ProductFlavourRepository;
