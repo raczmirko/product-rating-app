@@ -1,19 +1,24 @@
 package hu.okrim.productratingapp.entity;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 @Entity
+@IdClass(RatingId.class)
 public class Rating {
-    @EmbeddedId
-    private RatingId id;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "person")
+    private Person person;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "product")
+    Product product;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date date;
-    private byte taste;
-    private byte smell;
+    private Byte taste;
+    private Byte smell;
     private String remark;
 
     public Rating() {
