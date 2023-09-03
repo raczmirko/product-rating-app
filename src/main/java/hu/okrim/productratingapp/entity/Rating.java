@@ -23,6 +23,16 @@ public class Rating {
 
     public Rating() {
     }
+
+    public Rating(Person person, Product product, Date date, Byte taste, Byte smell, String remark) {
+        this.setPerson(person);
+        this.setProduct(product);
+        this.setDate(date);
+        this.setTaste(taste);
+        this.setSmell(smell);
+        this.setRemark(remark);
+    }
+
     public Date getDate() {
         return date;
     }
@@ -35,16 +45,8 @@ public class Rating {
         return taste;
     }
 
-    public void setTaste(byte taste) {
-        this.taste = taste;
-    }
-
     public Byte getSmell() {
         return smell;
-    }
-
-    public void setSmell(byte smell) {
-        this.smell = smell;
     }
 
     public String getRemark() {
@@ -53,5 +55,29 @@ public class Rating {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setTaste(Byte taste) {
+        this.taste = taste;
+    }
+
+    public void setSmell(Byte smell) {
+        this.smell = smell;
     }
 }
