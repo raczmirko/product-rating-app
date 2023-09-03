@@ -45,7 +45,6 @@ public class ProductFlavourController {
         // Create a new ProductFlavour instance and set its properties
         Product product = productService.getProductById(productId);
         Flavour flavour = flavourService.getFlavourById(flavourId);
-        ProductFlavourId productFlavourId = new ProductFlavourId(product.getId(),flavour.getId());
         ProductFlavour  productFlavour = new ProductFlavour (product,flavour);
 
         // Save the product using the ProductFlavour Service
