@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Brands</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    </head>
+    <body>
+        <div th:replace="~{_header :: header}"></div>
+        <div class="alert-success" th:if="${status} == 'success'" style="background-color: green; color: black; padding: 5px">
+            <strong> Action succeeded. </strong>
+        </div>
+        <div th:if="${status} == 'failed'" style="background-color: red; color: white; padding: 5px">
+            <strong > Action failed. Try again later! </strong>
+        </div>
+        <main>
+            <section>
+                <h3>Add a new product to the database:</h3>
+                <form th:action="@{/products/add-product}" method="post">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productName">Product Name:</label>
+                            <input type="text" id="productName" name="productName" class="form-control" maxlength="50" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="brand">Brand:</label>
+                            <select id="brand" name="brand" class="form-control">
+                                <option value="" disabled selected>Select Brand</option>
+                                <option th:each="brand : ${brands}" th:value="${brand.id}" th:text="${brand.name}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category:</label>
+                            <select id="category" name="category" class="form-control">
+                                <option value="" disabled selected>Select Category</option>
+                                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="isDrink">Is Drink:</label>
+                            <input type="checkbox" id="isDrink" name="isDrink" class="form-check-input">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="addButton">Add</button>
+                </form>
+                <table>
+                    <tr class="head">
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Brand</th>
+                        <th>Category</th>
+                        <th>Is Drink?</th>
+                    </tr>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.id}"></td>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.brand.name}"></td>
+                        <td th:text="${product.category.name}"></td>
+                        <td th:text="${product.isDrink} ? 'Yes' : 'No'"></td>
+                        <td>
+                            <form th:action="@{/products/delete-product}" method="post" onsubmit="return confirmDelete();">
+                                <input type="hidden" name="product" th:value="${product.id}" />
+                                <button type="submit" class="deleteButton">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2023 Mirkó Rácz. All rights reserved.</p>
+        </footer>
+        <script>
+            function confirmDelete() {
+            return confirm("Are you sure you want to delete this category?");
+            }
+        </script>
+    </body>
+</html>
