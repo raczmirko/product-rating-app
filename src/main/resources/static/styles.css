@@ -74,13 +74,21 @@ deleteButton {
     align-items: center;
 }
 
-/* Ensure the checkbox aligns with the label text */
 .form-group label {
     display: flex;
     align-items: center;
 }
 
-/* Add some spacing around the checkbox */
 .form-check-input {
     margin-right: 5px;
+}
+
+.addButton {
+    width: 100%;
+}
+
+.gradient-line {
+    border: 0; /* Remove the default line styles */
+    height: 4px; /* Adjust the height as needed */
+    background: linear-gradient(to right, blue, green); /* Apply the gradient */
 }
