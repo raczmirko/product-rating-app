@@ -1,21 +1,22 @@
 package hu.okrim.productratingapp.service;
 
+import hu.okrim.productratingapp.entity.Flavour;
 import hu.okrim.productratingapp.entity.Product;
 import hu.okrim.productratingapp.repository.ProductRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 @Service
 public class ProductServiceImpl implements ProductService{
     @Autowired
     ProductRepository productRepository;
     @Override
-    public Optional<Product> getProductById(Integer id) {
-        return productRepository.findById(id);
+    public Product getProductById(Integer id) {
+        return productRepository.findById(id).orElseThrow(()
+                -> new EntityNotFoundException("Product with id " + id + " not found"));
     }
     @Override
     public Product addProduct(Product product) {

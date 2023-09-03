@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Service
 public interface BrandService {
-    Optional<Brand> getBrandById(Integer id);
+    Brand getBrandById(Integer id);
 
     Brand addBrand(Brand brand);
 

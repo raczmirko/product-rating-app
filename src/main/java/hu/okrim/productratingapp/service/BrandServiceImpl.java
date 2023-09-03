@@ -2,6 +2,7 @@ package hu.okrim.productratingapp.service;
 
 import hu.okrim.productratingapp.entity.Brand;
 import hu.okrim.productratingapp.repository.BrandRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,9 @@ public class BrandServiceImpl implements BrandService{
     @Autowired
     BrandRepository brandRepository;
     @Override
-    public Optional<Brand> getBrandById(Integer id) {
-        return brandRepository.findById(id);
+    public Brand getBrandById(Integer id) {
+        return brandRepository.findById(id).orElseThrow(()
+                -> new EntityNotFoundException("Brand with id " + id + " not found"));
     }
     @Override
     public Brand addBrand(Brand brand) {

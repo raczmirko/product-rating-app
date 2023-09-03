@@ -2,19 +2,20 @@ package hu.okrim.productratingapp.service;
 
 import hu.okrim.productratingapp.entity.Person;
 import hu.okrim.productratingapp.repository.PersonRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PersonServiceImpl implements PersonService{
     @Autowired
     PersonRepository personRepository;
     @Override
-    public Optional<Person> getPersonById(Integer id) {
-        return personRepository.findById(id);
+    public Person getPersonById(Integer id) {
+        return personRepository.findById(id).orElseThrow(()
+                -> new EntityNotFoundException("Person with id " + id + " not found"));
     }
     @Override
     public Person addPerson(Person person) {

@@ -2,6 +2,7 @@ package hu.okrim.productratingapp.service;
 
 import hu.okrim.productratingapp.entity.Flavour;
 import hu.okrim.productratingapp.repository.FlavourRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,9 @@ public class FlavourServiceImpl implements FlavourService{
     @Autowired
     FlavourRepository flavourRepository;
 
-    public Optional<Flavour> getFlavourById(Integer id) {
-        return flavourRepository.findById(id);
+    public Flavour getFlavourById(Integer id) {
+        return flavourRepository.findById(id).orElseThrow(()
+                -> new EntityNotFoundException("Flavour with id " + id + " not found"));
     }
 
     @Override

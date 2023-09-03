@@ -2,6 +2,7 @@ package hu.okrim.productratingapp.service;
 
 import hu.okrim.productratingapp.entity.Category;
 import hu.okrim.productratingapp.repository.CategoryRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,9 @@ public class CategoryServiceImpl implements CategoryService{
     @Autowired
     CategoryRepository categoryRepository;
     @Override
-    public Optional<Category> getCategoryById(Integer id) {
-        return categoryRepository.findById(id);
+    public Category getCategoryById(Integer id) {
+        return categoryRepository.findById(id).orElseThrow(()
+                -> new EntityNotFoundException("Category with id " + id + " not found"));
     }
     @Override
     public Category addCategory(Category brand) {

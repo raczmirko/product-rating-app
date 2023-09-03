@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Service
 public interface FlavourService {
-    Optional<Flavour> getFlavourById(Integer id);
+    Flavour getFlavourById(Integer id);
 
     Flavour addFlavour(Flavour flavour);
 
