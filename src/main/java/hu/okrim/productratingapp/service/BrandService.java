@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface BrandService {
     Brand getBrandById(Integer id);
 
-    Brand addBrand(Brand brand);
+    void addBrand(Brand brand);
 
     List<Brand> getAllBrands();
 

@@ -10,6 +10,6 @@ import java.util.List;
 public interface ProductFlavourService {
     List<ProductFlavour> getAllProductFlavours();
     ProductFlavour getProductFlavourById(ProductFlavourId id);
-    ProductFlavour addProductFlavour(ProductFlavour productFlavour);
+    void addProductFlavour(ProductFlavour productFlavour);
     void deleteProductFlavour(ProductFlavourId id);
 }

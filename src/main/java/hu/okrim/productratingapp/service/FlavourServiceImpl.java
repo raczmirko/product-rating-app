@@ -20,8 +20,8 @@ public class FlavourServiceImpl implements FlavourService{
     }
 
     @Override
-    public Flavour addFlavour(Flavour flavour) {
-        return flavourRepository.save(flavour);
+    public void addFlavour(Flavour flavour) {
+        flavourRepository.save(flavour);
     }
 
     @Override

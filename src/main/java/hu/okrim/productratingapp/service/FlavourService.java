@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface FlavourService {
     Flavour getFlavourById(Integer id);
 
-    Flavour addFlavour(Flavour flavour);
+    void addFlavour(Flavour flavour);
 
     List<Flavour> getAllFlavours();
 

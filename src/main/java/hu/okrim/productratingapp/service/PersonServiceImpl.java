@@ -17,8 +17,8 @@ public class PersonServiceImpl implements PersonService{
         return personRepository.findById(id).orElse(null);
     }
     @Override
-    public Person addPerson(Person person) {
-        return personRepository.save(person);
+    public void addPerson(Person person) {
+        personRepository.save(person);
     }
     @Override
     public List<Person> getAllPeople() {

@@ -9,7 +9,7 @@ import java.util.Optional;
 @Service
 public interface CategoryService {
     Category getCategoryById(Integer id);
-    Category addCategory(Category brand);
+    void addCategory(Category brand);
     List<Category> getAllCategories();
     void deleteCategory(Category brand);
 }

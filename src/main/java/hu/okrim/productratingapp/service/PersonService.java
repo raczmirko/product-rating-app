@@ -8,7 +8,7 @@ import java.util.List;
 public interface PersonService {
     Person getPersonById(Integer id);
 
-    Person addPerson(Person person);
+    void addPerson(Person person);
 
     List<Person> getAllPeople();
 

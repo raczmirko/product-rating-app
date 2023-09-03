@@ -29,8 +29,8 @@ public class ProductFlavourServiceImpl implements ProductFlavourService{
     }
 
     @Override
-    public ProductFlavour addProductFlavour(ProductFlavour productFlavour) {
-        return productFlavourRepository.save(productFlavour);
+    public void addProductFlavour(ProductFlavour productFlavour) {
+        productFlavourRepository.save(productFlavour);
     }
 
     @Override

@@ -19,8 +19,8 @@ public class BrandServiceImpl implements BrandService{
         return brandRepository.findById(id).orElse(null);
     }
     @Override
-    public Brand addBrand(Brand brand) {
-        return brandRepository.save(brand);
+    public void addBrand(Brand brand) {
+        brandRepository.save(brand);
     }
     @Override
     public List<Brand> getAllBrands() {
