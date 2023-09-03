@@ -21,33 +21,25 @@
             <hr class="gradient-line">
             <form th:action="@{/products/add-product}" method="post">
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="productName">Product Name:</label>
-                        <input type="text" id="productName" name="productName" class="form-control" maxlength="50" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="brand">Brand:</label>
-                        <select id="brand" name="brand" class="form-control">
-                            <option value="" disabled selected>Select Brand</option>
-                            <option th:each="brand : ${brands}" th:value="${brand.id}" th:text="${brand.name}"></option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="category">Category:</label>
-                        <select id="category" name="category" class="form-control">
-                            <option value="" disabled selected>Select Category</option>
-                            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="isDrink">Is Drink:</label>
-                        <input type="checkbox" id="isDrink" name="isDrink" class="form-check-input">
-                    </div>
+                    <label for="productName">Product Name:</label>
+                    <input class="width-100" type="text" id="productName" name="productName" maxlength="50" required>
+                    <label for="isDrink">Is Drink:</label>
+                    <input type="checkbox" id="isDrink" name="isDrink" class="form-check-input">
                 </div>
-
+                <div class="form-row">
+                    <label for="brand">Brand:</label>
+                    <select class="width-100" id="brand" name="brand">
+                        <option value="" disabled selected>Select Brand</option>
+                        <option th:each="brand : ${brands}" th:value="${brand.id}" th:text="${brand.name}"></option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="category">Category:</label>
+                    <select class="width-100" id="category" name="category">
+                        <option value="" disabled selected>Select Category</option>
+                        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                    </select>
+                </div>
                 <button type="submit" class="addButton">Add</button>
             </form>
             <hr class="gradient-line">
