@@ -22,19 +22,25 @@
       <form th:action="@{/ratings/add-rating}" method="post">
         <div class="form-row">
           <label for="person">Person:</label>
-          <select id="person" name="person" class="form-control">
+          <select class="width-100" id="person" name="person">
             <option value="" disabled selected>Select Person</option>
             <option th:each="person : ${people}" th:value="${person.id}" th:text="${person.name}"></option>
           </select>
+        </div>
+        <div class="form-row">
           <label for="product">Product:</label>
-          <select id="product" name="product" class="form-control">
+          <select class="width-100" id="product" name="product">
             <option value="" disabled selected>Select Product</option>
             <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name + ' (' + product.brand.name + ')'}"></option>
           </select>
+        </div>
+        <div class="form-row">
           <label for="taste">Taste:</label>
-          <input type="number" id="taste" name="taste" min="1" max="10" style="width:10%" required>
+          <input class="width-100" type="number" id="taste" name="taste" min="1" max="10" required>
+        </div>
+        <div class="form-row">
           <label for="smell">Smell:</label>
-          <input type="number" id="smell" name="smell" min="1" max="10" style="width:10%" required>
+          <input class="width-100" type="number" id="smell" name="smell" min="1" max="10" required>
         </div>
         <div class="form-row">
           <label for="remark">Remark:</label>

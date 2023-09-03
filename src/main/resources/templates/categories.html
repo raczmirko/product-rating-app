@@ -21,9 +21,9 @@
             <hr class="gradient-line">
             <form th:action="@{/categories/add-category}" method="post">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" style="width:50%"  maxlength="50" required>
+                <input class="width-100" type="text" id="name" name="name" maxlength="50" required>
                 <label for="description">Description:</label>
-                <input type="text" id="description" name="description" style="width:50%"  maxlength="255">
+                <input class="width-100" type="text" id="description" name="description" maxlength="255">
                 <button type="submit" class="addButton">Add</button>
             </form>
             <hr class="gradient-line">
