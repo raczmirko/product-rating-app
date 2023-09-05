@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
     <link rel="icon" type="image/png" th:href="@{/icons/C.png}">
+    <script src="/scripts/confirmDelete.js"></script>
 </head>
     <body>
         <div th:replace="~{_header :: header}"></div>
@@ -40,7 +41,7 @@
                     <td th:text="${category.name}"></td>
                     <td th:text="${category.description}"></td>
                     <td>
-                        <form th:action="@{/categories/delete-category}" method="post" onsubmit="return confirmDelete();">
+                        <form th:action="@{/categories/delete-category}" method="post" onsubmit="return confirmDelete('category');">
                             <input type="hidden" name="category" th:value="${category.id}" />
                             <button type="submit" class="deleteButton">Delete</button>
                         </form>
@@ -48,13 +49,6 @@
                 </tr>
             </table>
         </main>
-        <footer>
-            <p>&copy; 2023 Mirkó Rácz. All rights reserved.</p>
-        </footer>
-        <script>
-            function confirmDelete() {
-            return confirm("Are you sure you want to delete this category?");
-            }
-        </script>
+        <div th:replace="~{_footer :: footer}"></div>
     </body>
 </html>
