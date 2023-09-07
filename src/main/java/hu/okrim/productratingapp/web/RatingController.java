@@ -41,12 +41,12 @@ public class RatingController {
     public String addRating(
             @RequestParam("person") Person person,
             @RequestParam("product") Product product,
-            @RequestParam("date") Date date,
             @RequestParam("taste") Byte taste,
             @RequestParam("smell") Byte smell,
-            @RequestParam("remark") String remark,
+            @RequestParam(value = "remark", required = false) String remark,
             RedirectAttributes redirectAttributes) {
 
+        Date date = new Date();
         // Create a new Product instance and set its properties
         Rating rating = new Rating(person,product,date,taste,smell,remark);
 
@@ -60,7 +60,12 @@ public class RatingController {
     }
 
     @PostMapping("/delete-rating")
-    public String deleteRating(@RequestParam("rating") Rating rating, RedirectAttributes redirectAttributes){
+    public String deleteRating(@RequestParam("personId") Integer personId,
+                               @RequestParam("productId") Integer productId,
+                               RedirectAttributes redirectAttributes){
+        Person person = personService.getPersonById(personId);
+        Product product = productService.getProductById(productId);
+        Rating rating = ratingService.getRatingById(person,product);
         ratingService.deleteRating(rating);
         redirectAttributes.addFlashAttribute("status", Constants.SUCCESS_STATUS);
         return "redirect:/ratings";

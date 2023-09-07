@@ -1,8 +1,6 @@
 package hu.okrim.productratingapp.service;
 
-import hu.okrim.productratingapp.entity.Flavour;
-import hu.okrim.productratingapp.entity.Rating;
-import hu.okrim.productratingapp.entity.RatingId;
+import hu.okrim.productratingapp.entity.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,5 +15,9 @@ public interface RatingService {
     List<Rating> getAllRatings();
 
     void deleteRating(Rating rating);
+
+    List<Rating> getThreeLatestRatings();
+
+    Rating getRatingById(Person person, Product product);
 
 }

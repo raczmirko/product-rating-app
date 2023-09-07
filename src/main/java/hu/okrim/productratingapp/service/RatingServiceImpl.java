@@ -1,5 +1,7 @@
 package hu.okrim.productratingapp.service;
 
+import hu.okrim.productratingapp.entity.Person;
+import hu.okrim.productratingapp.entity.Product;
 import hu.okrim.productratingapp.entity.Rating;
 import hu.okrim.productratingapp.entity.RatingId;
 import hu.okrim.productratingapp.repository.RatingRepository;
@@ -35,5 +37,17 @@ public class RatingServiceImpl implements RatingService{
     @Override
     public void deleteRating(Rating rating) {
         ratingRepository.delete(rating);
+    }
+
+    @Override
+    public List<Rating> getThreeLatestRatings() {
+        List<Rating> ratingList = new ArrayList<>();
+        ratingList.addAll(ratingRepository.findThreeLatestRatings());
+        return ratingList;
+    }
+
+    @Override
+    public Rating getRatingById(Person person, Product product) {
+        return ratingRepository.findById(person, product);
     }
 }
