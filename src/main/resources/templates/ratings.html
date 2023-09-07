@@ -46,7 +46,7 @@
         </div>
         <div class="form-row">
           <label for="remark">Remark:</label>
-          <textarea type="text" id="remark" name="remark" style="width:100%"  required></textarea>
+          <textarea type="text" id="remark" name="remark" style="width:100%"></textarea>
         </div>
         <div class="form-row">
           <button type="submit" class="addButton">Add</button>
@@ -72,7 +72,8 @@
           <td th:text="${rating.remark}"></td>
           <td>
             <form th:action="@{/ratings/delete-rating}" method="post" onsubmit="return confirmDelete('rating');">
-              <input type="hidden" name="rating" th:value="${rating.id}" />
+              <input type="hidden" name="personId" th:value="${rating.person.id}" />
+              <input type="hidden" name="productId" th:value="${rating.product.id}" />
               <button type="submit" class="deleteButton">Delete</button>
             </form>
           </td>
