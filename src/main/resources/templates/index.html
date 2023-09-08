@@ -24,8 +24,8 @@
                 </span>
             </div>
             <hr class="gradient-line">
+            <h3>Latest three reviews</h3>
             <div th:unless="${#lists.isEmpty(ratings)}">
-                <h3>Latest three reviews</h3>
                 <table>
                     <tr class="head">
                         <th>Person</th>
@@ -45,7 +45,17 @@
                     </tr>
                 </table>
             </div>
-
+            <div th:if="${#lists.isEmpty(ratings)}">
+                <p>There are no ratings in your database yet. You should create some ;)</p>
+            </div>
+            <h3>The one who loves to give ratings</h3>
+            <div th:unless="${personWithMostRatings == null}">
+                <p>With a total of <span th:text="${ratingCount}"></span> ratings,
+                    the rating champion is no one else than... <span th:text="${personWithMostRatings.name}"></span>!</p>
+            </div>
+            <div th:if="${personWithMostRatings == null}">
+                <p>Nobody has submitted a rating yet. You could be the first!</p>
+            </div>
         </main>
         <div th:replace="~{_footer :: footer}"></div>
     </body>

@@ -13,4 +13,8 @@ public interface PersonService {
     List<Person> getAllPeople();
 
     void deletePerson(Person person);
+
+    Person getPersonWithMostRatings();
+
+    Integer getRatingCountOfPersonWithMostRatings();
 }

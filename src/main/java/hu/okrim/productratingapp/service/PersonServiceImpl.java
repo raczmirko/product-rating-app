@@ -32,4 +32,14 @@ public class PersonServiceImpl implements PersonService{
     public void deletePerson(Person person) {
         personRepository.delete(person);
     }
+
+    @Override
+    public Person getPersonWithMostRatings() {
+        return personRepository.findPersonWithMostRatings();
+    }
+
+    @Override
+    public Integer getRatingCountOfPersonWithMostRatings() {
+        return personRepository.getRatingCountOfPersonWithMostRatings();
+    }
 }

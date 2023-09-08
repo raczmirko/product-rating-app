@@ -1,7 +1,9 @@
 package hu.okrim.productratingapp.web;
 
 import hu.okrim.productratingapp.entity.Flavour;
+import hu.okrim.productratingapp.entity.Person;
 import hu.okrim.productratingapp.entity.Rating;
+import hu.okrim.productratingapp.service.PersonService;
 import hu.okrim.productratingapp.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +18,16 @@ import java.util.List;
 public class IndexController {
     @Autowired
     RatingService ratingService;
+    @Autowired
+    PersonService personService;
     @GetMapping("")
     public String load(Model model) {
         List<Rating> ratings = ratingService.getThreeLatestRatings();
         model.addAttribute("ratings", ratings);
+        Person person = personService.getPersonWithMostRatings();
+        model.addAttribute("personWithMostRatings", person);
+        Integer ratingCount  = personService.getRatingCountOfPersonWithMostRatings();
+        model.addAttribute("ratingCount", ratingCount);
         return "index";
     }
     @GetMapping("/get-latest-reviews")
