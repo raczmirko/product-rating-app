@@ -56,6 +56,24 @@
             <div th:if="${personWithMostRatings == null}">
                 <p>Nobody has submitted a rating yet. You could be the first!</p>
             </div>
+            <h3>Top 3 best rated products</h3>
+            <div th:unless="${productsWithMostRatings == null}">
+                <table>
+                    <tr class="head">
+                        <th>Brand</th>
+                        <th>Product</th>
+                        <th>Rating average (/10.0, both flavour&smell)</th>
+                    </tr>
+                    <tr th:each="index : ${#numbers.sequence(0, productsWithMostRatings.size() - 1)}">
+                        <td th:text="${productsWithMostRatings[index].brand.name}"></td>
+                        <td th:text="${productsWithMostRatings[index].name}"></td>
+                        <td th:text="${averagesForProductsWithMostRatings[index]}"></td>
+                    </tr>
+                </table>
+            </div>
+            <div th:if="${productsWithMostRatings == null}">
+                <p>No products have been rated so far. Fast, rate something!</p>
+            </div>
         </main>
         <div th:replace="~{_footer :: footer}"></div>
     </body>

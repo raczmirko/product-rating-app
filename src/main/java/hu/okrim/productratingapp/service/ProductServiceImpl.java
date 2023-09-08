@@ -1,9 +1,7 @@
 package hu.okrim.productratingapp.service;
 
-import hu.okrim.productratingapp.entity.Flavour;
 import hu.okrim.productratingapp.entity.Product;
 import hu.okrim.productratingapp.repository.ProductRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +30,15 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void deleteProduct(Product product) {
         productRepository.delete(product);
+    }
+
+    @Override
+    public List<Product> findTop3ProductsWithMostRatings() {
+        return productRepository.findTop3ProductsWithBestRatings();
+    }
+
+    @Override
+    public List<Double> getRatingAverageForTop3ProductsWithBestRatings() {
+        return productRepository.getRatingAverageForTop3ProductsWithBestRatings();
     }
 }

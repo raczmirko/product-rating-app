@@ -11,4 +11,6 @@ public interface ProductService {
     void addProduct(Product product);
     List<Product> getAllProducts();
     void deleteProduct(Product product);
+    List<Product> findTop3ProductsWithMostRatings();
+    List<Double> getRatingAverageForTop3ProductsWithBestRatings();
 }
