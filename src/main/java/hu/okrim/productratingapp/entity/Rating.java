@@ -36,47 +36,36 @@ public class Rating {
     public Date getDate() {
         return date;
     }
-
     public void setDate(Date date) {
         this.date = date;
     }
-
     public Byte getTaste() {
         return taste;
     }
-
     public Byte getSmell() {
         return smell;
     }
-
     public String getRemark() {
         return remark;
     }
-
     public void setRemark(String remark) {
         this.remark = remark;
     }
-
     public Person getPerson() {
         return person;
     }
-
     public void setPerson(Person person) {
         this.person = person;
     }
-
     public Product getProduct() {
         return product;
     }
-
     public void setProduct(Product product) {
         this.product = product;
     }
-
     public void setTaste(Byte taste) {
         this.taste = taste;
     }
-
     public void setSmell(Byte smell) {
         this.smell = smell;
     }
