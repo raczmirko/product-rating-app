@@ -66,7 +66,7 @@
         <tr th:each="rating : ${ratings}">
           <td th:text="${rating.person.name}"></td>
           <td th:text="${rating.product.name}"></td>
-          <td th:text="${rating.date}"></td>
+          <td th:text="${#dates.format(rating.date, 'yyyy-MM-dd')}"></td>
           <td th:text="${rating.taste}"></td>
           <td th:text="${rating.smell}"></td>
           <td th:text="${rating.remark}"></td>

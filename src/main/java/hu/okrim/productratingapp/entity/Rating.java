@@ -15,7 +15,6 @@ public class Rating {
     @ManyToOne
     @JoinColumn(name = "product")
     Product product;
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date date;
     private Byte taste;
     private Byte smell;
