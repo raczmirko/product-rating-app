@@ -57,7 +57,7 @@
                 <p>Nobody has submitted a rating yet. You could be the first!</p>
             </div>
             <h3>Top 3 best rated products</h3>
-            <div th:unless="${productsWithMostRatings == null}">
+            <div th:if="${not #lists.isEmpty(productsWithMostRatings)}">
                 <table>
                     <tr class="head">
                         <th>Brand</th>
@@ -71,7 +71,7 @@
                     </tr>
                 </table>
             </div>
-            <div th:if="${productsWithMostRatings == null}">
+            <div th:if="${#lists.isEmpty(productsWithMostRatings)}">
                 <p>No products have been rated so far. Fast, rate something!</p>
             </div>
         </main>
