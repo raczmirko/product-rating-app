@@ -41,9 +41,7 @@ public class RatingServiceImpl implements RatingService{
 
     @Override
     public List<Rating> getThreeLatestRatings() {
-        List<Rating> ratingList = new ArrayList<>();
-        ratingList.addAll(ratingRepository.findThreeLatestRatings());
-        return ratingList;
+        return new ArrayList<>(ratingRepository.findThreeLatestRatings());
     }
 
     @Override
