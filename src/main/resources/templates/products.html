@@ -26,7 +26,7 @@
                     <label for="productName">Product Name:</label>
                     <input class="width-100" type="text" id="productName" name="productName" maxlength="50" required>
                     <div class="toggle-button">
-                        <button id="toggleButton" class="toggle-btn" type="button" style="width:100%; height=50px;">Drink</button>
+                        <button id="toggleButton" class="toggle-btn toggle-food" type="button">Drink</button>
                         <input type="checkbox" id="isDrinkHidden" name="isDrink" class="toggle-input" style="display: none;" checked>
                     </div>
                 </div>
@@ -73,9 +73,8 @@
         </main>
         <div th:replace="~{_footer :: footer}"></div>
         <script>
-            // Get references to the button, the hidden checkbox input, and the initial state
+            // Get references to the button and the initial state
             const toggleButton = document.getElementById("toggleButton");
-            const checkbox = document.getElementById("isDrinkHidden");
             let isDrink = true; // Initial state (true for "Drink")
 
             // Add a click event listener to the button
@@ -83,10 +82,12 @@
                 // Toggle the text and color of the button
                 isDrink = !isDrink; // Toggle the boolean value
                 toggleButton.textContent = isDrink ? "Drink" : "Food";
-                toggleButton.style.backgroundColor = isDrink ? "blue" : "green";
+                toggleButton.classList.toggle("toggle-food");
 
-                // Update the hidden checkbox input's checked state
-                checkbox.checked = isDrink;
+                // Toggle the background image based on the state
+                const drinkImage = '/images/drink_button_background.png';
+                const foodImage = '/images/food_button_background.png';
+                toggleButton.style.backgroundImage = isDrink ? `url('${drinkImage}')` : `url('${foodImage}')`;
             });
         </script>
     </body>
