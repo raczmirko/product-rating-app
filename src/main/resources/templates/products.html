@@ -88,6 +88,10 @@
                 const drinkImage = '/images/drink_button_background.png';
                 const foodImage = '/images/food_button_background.png';
                 toggleButton.style.backgroundImage = isDrink ? `url('${drinkImage}')` : `url('${foodImage}')`;
+
+                // Update the hidden checkbox input's checked state
+                const checkbox = document.getElementById("isDrinkHidden");
+                checkbox.checked = isDrink;
             });
         </script>
     </body>
