@@ -1,8 +1,6 @@
 package hu.okrim.productratingapp.entity;
 
 import jakarta.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 @Entity
 @IdClass(RatingId.class)
@@ -15,6 +13,7 @@ public class Rating {
     @ManyToOne
     @JoinColumn(name = "product")
     Product product;
+    @Column(name = "date", columnDefinition = "DATE")
     private Date date;
     private Byte taste;
     private Byte smell;
