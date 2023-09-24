@@ -92,29 +92,13 @@ deleteButton {
 }
 
 .addButton {
-    width: 100%;
+    width: 99%;
 }
 
 .gradient-line {
     border: 0; /* Remove the default line styles */
     height: 4px; /* Adjust the height as needed */
     background: linear-gradient(to right, blue, green); /* Apply the gradient */
-}
-
-/* Button styles */
-.toggle-button {
-    padding: 10px 20px; /* Adjust padding as needed */
-    background-color: blue; /* Initial color for Drink */
-    border: none;
-    border-radius: 5px; /* Rounded shape */
-    cursor: pointer;
-    transition: background-color 0.3s; /* Smooth color transition */
-    width: 100%;
-}
-
-/* Adjust the button background color when toggled */
-.toggle-button.food {
-    background-color: #81BE83; /* Color for Food */
 }
 
 #particles-js{
@@ -124,4 +108,22 @@ deleteButton {
   background-size: cover;
   background-position: 100% 100%;
   background-repeat: no-repeat;
+}
+
+
+/* Button styles */
+.toggle-button {
+    display: inline-block;
+    position: relative;
+    width: 99% !important;
+}
+
+.toggle-btn {
+    height: 50px !important;
+    background-color: blue;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.4s;
 }
