@@ -6,10 +6,7 @@ import hu.okrim.productratingapp.service.FlavourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -39,5 +36,12 @@ public class FlavourController {
         flavourService.deleteFlavour(flavour);
         redirectAttributes.addFlashAttribute("status", Constants.SUCCESS_STATUS);
         return "redirect:/flavours";
+    }
+
+    @GetMapping("/all")
+    @ResponseBody
+    public List<Flavour> getAllFlavours() {
+        List<Flavour> flavours = flavourService.getAllFlavours();
+        return flavours;
     }
 }

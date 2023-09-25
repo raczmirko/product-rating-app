@@ -170,3 +170,26 @@ deleteButton {
 .toggle-btn:active::before {
     opacity: 0.8; /* Adjust the opacity as needed */
 }
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.selected-tag {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.selected-tag:hover {
+  background-color: #0056b3;
+}

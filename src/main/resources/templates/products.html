@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
         <link rel="icon" type="image/png" th:href="@{/icons/P.png}">
         <script src="/scripts/confirmDelete.js"></script>
+        <script src="/scripts/tagInput.js"></script>
     </head>
     <body>
         <div th:replace="~{_header :: header}"></div>
@@ -46,6 +47,14 @@
                 </div>
                 <button type="submit" class="addButton">Add</button>
             </form>
+            <!-- Tag system for flavour description -->
+            <div class="tag-container">
+                <input type="text" id="tag-input" placeholder="Search and select flavours">
+                <select id="flavours-dropdown">
+                    <option value="" disabled selected>Select Flavour</option>
+                </select>
+                <div class="selected-tags" id="selected-tags"></div>
+            </div>
             <hr class="gradient-line">
             <h3>Products already in the database:</h3>
             <table>
