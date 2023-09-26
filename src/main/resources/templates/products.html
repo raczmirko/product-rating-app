@@ -47,6 +47,8 @@
                     </select>
                 </div>
                 <hr class="gradient-line">
+                <!-- Hidden input for submitting product flavours with the form -->
+                <input type="hidden" id="selected-flavors-input" name="selectedFlavors" />
                 <!-- Tag system for flavour description -->
                 <div class="col-100">
                     <div class="col-33 inline">
@@ -79,6 +81,7 @@
                         </div>
                     </div>
                 </div>
+                <label for="selected-tags">Selected Flavours:</label>
                 <div class="selected-tags" id="selected-tags"></div>
                 <hr class="gradient-line">
                 <button type="submit" class="addButton">Add</button>

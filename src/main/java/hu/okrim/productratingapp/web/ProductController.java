@@ -1,12 +1,7 @@
 package hu.okrim.productratingapp.web;
 
-import hu.okrim.productratingapp.entity.Brand;
-import hu.okrim.productratingapp.entity.Category;
-import hu.okrim.productratingapp.entity.Constants;
-import hu.okrim.productratingapp.entity.Product;
-import hu.okrim.productratingapp.service.BrandService;
-import hu.okrim.productratingapp.service.CategoryService;
-import hu.okrim.productratingapp.service.ProductService;
+import hu.okrim.productratingapp.entity.*;
+import hu.okrim.productratingapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -23,6 +19,10 @@ import java.util.List;
 public class ProductController {
     @Autowired
     ProductService productService;
+    @Autowired
+    ProductFlavourService productFlavourService;
+    @Autowired
+    FlavourService flavourService;
     @Autowired
     BrandService brandService;
     @Autowired
@@ -44,6 +44,7 @@ public class ProductController {
             @RequestParam("productName") String productName,
             @RequestParam("brand") Integer brandId,
             @RequestParam("category") Integer categoryId,
+            @RequestParam("selectedFlavors") String selectedFlavors,
             @RequestParam(value = "isDrink", required = false) boolean isDrink,
             RedirectAttributes redirectAttributes) {
 
@@ -61,6 +62,15 @@ public class ProductController {
 
         // Save the product using the ProductService
         productService.addProduct(product);
+
+        String[] flavourIDStrings = selectedFlavors.split(",");
+        ArrayList<Integer> flavourIDs = new ArrayList<>();
+        for(String item: flavourIDStrings){
+            flavourIDs.add(Integer.parseInt(item));
+        }
+        for (Integer flavourID : flavourIDs) {
+            productFlavourService.addProductFlavour(new ProductFlavour(product, flavourService.getFlavourById(flavourID)));
+        }
 
         String status = Constants.SUCCESS_STATUS;
         redirectAttributes.addFlashAttribute("status", status);

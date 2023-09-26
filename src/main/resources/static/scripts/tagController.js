@@ -3,9 +3,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const pagination = document.querySelector('.pagination');
   const searchBar = document.getElementById('tag-input');
   const pageSizeSelect = document.getElementById('items-per-page-select');
+  let searchText = searchBar.value != null ? searchBar.value.toLowerCase() : null;
+  let flavoursParamString = '';
   let flavours = []; // Store flavour data here
   let pageNumber = 1;
   let pageSize = parseInt(pageSizeSelect.value); // Parse the initial value
+  // Define an array to store selected flavors (tags)
+  const selectedFlavors = [];
+  const selectedFlavorIDs = [];
+  let url = `/flavours/search?searchText=${searchText}&pageSize=${pageSize}&pageNumber=${pageNumber}&flavours=${flavoursParamString}`;
 
   // Function to render flavour cards
   function renderFlavorCards(page) {
@@ -110,8 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
     function searchFlavours() {
-        const searchText = searchBar.value != null ? searchBar.value.toLowerCase() : null;
-         const url = `/flavours/search?searchText=${searchText}&pageSize=${pageSize}&pageNumber=${pageNumber}`;
+        searchText = searchBar.value != null ? searchBar.value.toLowerCase() : null;
          fetch(url)
           .then((response) => response.json())
           .then((data) => {
@@ -139,5 +144,77 @@ document.addEventListener('DOMContentLoaded', function () {
     // Event listener for input field changes (e.g., user typing)
     searchBar.addEventListener('input', () => {
       searchFlavours();
+    });
+
+    // Function to add a selected flavor (tag)
+    function addSelectedFlavor(flavor) {
+      selectedFlavors.push(flavor);
+
+      // Update the visual representation of selected flavors
+      const selectedTagsContainer = document.getElementById('selected-tags');
+      const tagElement = document.createElement('span');
+      tagElement.textContent = flavor;
+      tagElement.classList.add('selected-tag');
+
+      // Add an event listener to remove the tag when clicked
+      tagElement.addEventListener('click', () => {
+        removeSelectedFlavor(flavor);
+      });
+
+      selectedTagsContainer.appendChild(tagElement);
+    }
+
+    // Function to remove a selected flavor (tag)
+    function removeSelectedFlavor(flavor) {
+      const flavorIndex = selectedFlavors.indexOf(flavor);
+      if (flavorIndex !== -1) {
+        selectedFlavors.splice(flavorIndex, 1);
+
+        // Update the visual representation of selected flavors
+        const selectedTagsContainer = document.getElementById('selected-tags');
+        const tagElements = selectedTagsContainer.querySelectorAll('.selected-tag');
+        tagElements.forEach((tagElement) => {
+          if (tagElement.textContent === flavor) {
+            selectedTagsContainer.removeChild(tagElement);
+          }
+        });
+      }
+    }
+
+    // Event listener for flavor card clicks
+    flavourContainer.addEventListener('click', (event) => {
+      if (event.target.classList.contains('flavour-card')) {
+        const selectedFlavor = event.target.textContent;
+        const selectedFlavorID = getFlavorIDByName(selectedFlavor);
+
+        // Check if the flavor is not already selected
+        if (!selectedFlavors.includes(selectedFlavor)) {
+          // Add the selected flavor to the list
+          addSelectedFlavor(selectedFlavor);
+          // Add the selected flavor's ID to the IDs list
+          selectedFlavorIDs.push(selectedFlavorID);
+        }
+      }
+    });
+
+    // Helper function to get the flavor ID by name
+    function getFlavorIDByName(flavorName) {
+      // You can search for the flavor ID in your 'flavours' array
+      // Assuming that 'flavours' is an array of objects with 'name' and 'id' properties
+      const flavor = flavours.find((flavor) => flavor.name === flavorName);
+      return flavor ? flavor.id : null;
+    }
+
+    // Function to update the form's hidden input field with selected flavors
+    function updateSelectedFlavorsInput() {
+      const selectedFlavorsInput = document.getElementById('selected-flavors-input');
+      selectedFlavorsInput.value = selectedFlavorIDs.join(',');
+    }
+
+    // Event listener for form submission
+    const form = document.querySelector('form');
+    form.addEventListener('submit', () => {
+      // Update the hidden input field with selected flavors
+      updateSelectedFlavorsInput();
     });
 });
