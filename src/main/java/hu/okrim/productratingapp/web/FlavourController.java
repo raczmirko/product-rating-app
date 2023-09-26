@@ -4,6 +4,9 @@ import hu.okrim.productratingapp.entity.Constants;
 import hu.okrim.productratingapp.entity.Flavour;
 import hu.okrim.productratingapp.service.FlavourService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -43,5 +46,14 @@ public class FlavourController {
     public List<Flavour> getAllFlavours() {
         List<Flavour> flavours = flavourService.getAllFlavours();
         return flavours;
+    }
+
+    @GetMapping("/search")
+    @ResponseBody
+    public Page<Flavour> searchAllFlavours(@RequestParam(value = "name", required = false) String name,
+                                           @RequestParam("pageNumber") Integer pageNumber,
+                                           @RequestParam("pageSize") Integer pageSize) {
+        Pageable request = PageRequest.of(pageNumber - 1, pageSize);
+        return flavourService.findAllByName(name, request);
     }
 }

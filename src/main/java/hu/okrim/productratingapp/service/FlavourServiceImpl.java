@@ -4,6 +4,8 @@ import hu.okrim.productratingapp.entity.Flavour;
 import hu.okrim.productratingapp.repository.FlavourRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -36,5 +38,10 @@ public class FlavourServiceImpl implements FlavourService{
     @Override
     public void deleteFlavour(Flavour flavour) {
         flavourRepository.delete(flavour);
+    }
+
+    @Override
+    public Page<Flavour> findAllByName(String name, Pageable request) {
+        return flavourRepository.findAllByName(name, request);
     }
 }

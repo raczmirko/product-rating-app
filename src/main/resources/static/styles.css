@@ -193,3 +193,124 @@ deleteButton {
 .selected-tag:hover {
   background-color: #0056b3;
 }
+
+.col-100 {
+    width: 100%;
+     display: flex; /* Use flexbox to create a row layout */
+}
+.col-75 {
+    width: 75%;
+}
+.col-50 {
+    width: 50%;
+}
+.col-33 {
+    width: 33%;
+}
+.col-25 {
+    width: 25%;
+}
+
+.height-40px {
+    height:40px;
+}
+
+.mainButton {
+    background-color: purple;
+        color: white;
+        display: flex;
+        align-items: center; /* Vertically center the content */
+        justify-content: center; /* Horizontally center the content */
+        height: 40px;
+}
+
+.inline {
+    flex: 1; /* Distribute available space equally among children */
+    margin-right: 5px; /* Optional margin between elements */
+}
+
+.flavour-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center the content */
+  align-items: center; /* Horizontally center the content */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: calc(20% - 20px); /* Set the width to 20% minus some margin */
+  text-align: center; /* Center text horizontally */
+}
+
+
+.flavour-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Adjust the CSS for flavor cards */
+.flavour-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Align cards to the left */
+}
+
+/* Ensure the cards wrap to the next row if there are more than 5 */
+@media screen and (max-width: 1200px) {
+  .flavour-card {
+    width: calc(25% - 20px); /* Adjust the width for smaller screens */
+  }
+}
+
+/* Ensure the cards wrap to the next row if there are more than 4 */
+@media screen and (max-width: 992px) {
+  .flavour-card {
+    width: calc(33.33% - 20px); /* Adjust the width for even smaller screens */
+  }
+}
+
+
+.page-link {
+  margin: 0 4px;
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+
+  /* Add hover effect */
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+.page-link.active {
+  font-weight: bold;
+  background-color: #0056b3;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.pagination-container {
+  display: flex;
+  width:100%;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100%; /* Ensure the container takes up the full height */
+}
