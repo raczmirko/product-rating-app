@@ -84,8 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-
-  // Simulated API call to fetch flavours
   function fetchFlavours() {
     fetch('/flavours/all')
       .then((response) => response.json())
@@ -111,15 +109,13 @@ document.addEventListener('DOMContentLoaded', function () {
     updatePagination(); // Update pagination controls
   });
 
-  // Simulated API call to fetch flavours
     function searchFlavours() {
         const searchText = searchBar.value != null ? searchBar.value.toLowerCase() : null;
          const url = `/flavours/search?searchText=${searchText}&pageSize=${pageSize}&pageNumber=${pageNumber}`;
-         // Make a GET request to your API endpoint
          fetch(url)
           .then((response) => response.json())
           .then((data) => {
-          flavourList = data;
+          flavours = data.content;
           renderFlavorCards(pageNumber);
           updatePagination();
         })
