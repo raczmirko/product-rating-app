@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FlavourRepository extends CrudRepository<Flavour, Integer> {
-    @Query("SELECT f FROM Flavour f WHERE LOWER(name) LIKE  CONCAT('%', LOWER(:name), '%')")
+    @Query("SELECT f FROM Flavour f WHERE LOWER(f.name) LIKE  CONCAT('%', LOWER(:name), '%')")
     Page<Flavour>findAllByName(@Param("name") String name, Pageable request);
 }

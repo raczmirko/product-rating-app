@@ -50,9 +50,10 @@ public class FlavourController {
 
     @GetMapping("/search")
     @ResponseBody
-    public Page<Flavour> searchAllFlavours(@RequestParam(value = "name", required = false) String name,
+    public Page<Flavour> searchAllFlavours(@RequestParam(value = "searchText", required = false) String name,
                                            @RequestParam("pageNumber") Integer pageNumber,
                                            @RequestParam("pageSize") Integer pageSize) {
+        if(name == null || name.isBlank() || name.isEmpty()){name = "";}
         Pageable request = PageRequest.of(pageNumber - 1, pageSize);
         return flavourService.findAllByName(name, request);
     }
