@@ -56,8 +56,10 @@ public class ProductFlavourController {
         return "redirect:/product-flavours";
     }
     @PostMapping("/delete-product-flavour")
-    public String deleteProductFlavour (@RequestParam("productFlavourId") ProductFlavourId  productFlavourId, RedirectAttributes redirectAttributes){
-        productFlavourService.deleteProductFlavour(productFlavourId);
+    public String deleteProductFlavour (@RequestParam("product") Product  product,
+                                        @RequestParam("flavour") Flavour  flavour,
+                                        RedirectAttributes redirectAttributes){
+        productFlavourService.deleteProductFlavour(new ProductFlavourId(product,flavour));
         redirectAttributes.addFlashAttribute("status", Constants.SUCCESS_STATUS);
         return "redirect:/product-flavours";
     }

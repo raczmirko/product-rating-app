@@ -53,6 +53,7 @@
                 <td>
                     <form th:action="@{/product-flavours/delete-product-flavour}" method="post" onsubmit="return confirmDelete('product flavour');">
                         <input type="hidden" name="product" th:value="${productFlavour.product.id}" />
+                        <input type="hidden" name="flavour" th:value="${productFlavour.flavour.id}" />
                         <button type="submit" class="deleteButton">Delete</button>
                     </form>
                 </td>
