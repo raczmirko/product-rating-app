@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
     <link rel="icon" type="image/png" th:href="@{/icons/R.png}">
     <script src="/scripts/confirmDelete.js"></script>
+    <script src="/scripts/productTagController.js"></script>
   </head>
   <body>
     <div th:replace="~{_header :: header}"></div>
@@ -29,13 +30,53 @@
             <option th:each="person : ${people}" th:value="${person.id}" th:text="${person.name}"></option>
           </select>
         </div>
+<!--        <div class="form-row">-->
+<!--          <label for="product">Product:</label>-->
+<!--          <select class="width-100" id="product" name="product">-->
+<!--            <option value="" disabled selected>Select Product</option>-->
+<!--            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name + ' (' + product.brand.name + ')'}"></option>-->
+<!--          </select>-->
+<!--        </div>-->
+        <hr class="gradient-line">
         <div class="form-row">
-          <label for="product">Product:</label>
-          <select class="width-100" id="product" name="product">
-            <option value="" disabled selected>Select Product</option>
-            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name + ' (' + product.brand.name + ')'}"></option>
-          </select>
+          <!-- Hidden input for submitting product flavours with the form -->
+          <input type="hidden" id="product-input" name="product" />
+          <!-- Tag system for flavour description -->
+          <div class="col-100">
+            <div class="col-33 inline">
+              <input class="height-40px col-100" type="text" id="tag-input" placeholder="Search for products">
+            </div>
+            <div class="col-33 inline">
+              <select id="items-per-page-select" class="height-40px col-100">
+                <option>5</option>
+                <option selected>10</option>
+                <option>15</option>
+                <option>20</option>
+                <option>25</option>
+                <option>50</option>
+                <option>100</option>
+              </select>
+            </div>
+            <div class="col-33 inline">
+              <button type="button" class="mainButton height-40px col-100">Reset Filters</button>
+            </div>
+          </div>
+          <div class="col-100">
+            <div class="product-container col-100">
+              <!-- Product Cards will be rendered here -->
+            </div>
+          </div>
+          <div class="col-100">
+            <div class="pagination-container">
+              <div class="pagination">
+                <!-- Pagination controls will be rendered here -->
+              </div>
+            </div>
+          </div>
+          <label for="selected-tags">Selected Product:</label>
+          <div class="selected-tags col-100" id="selected-tags"></div>
         </div>
+        <hr class="gradient-line">
         <div class="form-row">
           <label for="taste">Taste:</label>
           <input class="width-100" type="number" id="taste" name="taste" min="1" max="10" required>

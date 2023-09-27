@@ -3,6 +3,8 @@ package hu.okrim.productratingapp.service;
 import hu.okrim.productratingapp.entity.Product;
 import hu.okrim.productratingapp.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -41,5 +43,10 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<Double> getRatingAverageForTop3ProductsWithBestRatings() {
         return productRepository.getRatingAverageForTop3ProductsWithBestRatings();
+    }
+
+    @Override
+    public Page<Product> findAllByName(String name, Pageable request) {
+        return productRepository.findAllByName(name, request);
     }
 }

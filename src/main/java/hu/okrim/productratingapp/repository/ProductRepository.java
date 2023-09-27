@@ -1,8 +1,12 @@
 package hu.okrim.productratingapp.repository;
 
+import hu.okrim.productratingapp.entity.Flavour;
 import hu.okrim.productratingapp.entity.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,5 +33,8 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
             "LIMIT 3)"
     )
     List<Double> getRatingAverageForTop3ProductsWithBestRatings();
+
+    @Query("SELECT p FROM Product p WHERE LOWER(p.name) LIKE  CONCAT('%', LOWER(:name), '%')")
+    Page<Product> findAllByName(@Param("name") String name, Pageable request);
 
 }

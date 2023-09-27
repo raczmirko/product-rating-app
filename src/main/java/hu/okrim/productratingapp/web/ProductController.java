@@ -3,12 +3,12 @@ package hu.okrim.productratingapp.web;
 import hu.okrim.productratingapp.entity.*;
 import hu.okrim.productratingapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
@@ -82,5 +82,15 @@ public class ProductController {
         productService.deleteProduct(product);
         redirectAttributes.addFlashAttribute("status", Constants.SUCCESS_STATUS);
         return "redirect:/products";
+    }
+
+    @GetMapping("/search")
+    @ResponseBody
+    public Page<Product> searchAllProducts(@RequestParam(value = "searchText", required = false) String name,
+                                           @RequestParam("pageNumber") Integer pageNumber,
+                                           @RequestParam("pageSize") Integer pageSize) {
+        if(name == null || name.isBlank() || name.isEmpty()){name = "";}
+        Pageable request = PageRequest.of(pageNumber - 1, pageSize);
+        return productService.findAllByName(name, request);
     }
 }
