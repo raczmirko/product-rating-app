@@ -9,8 +9,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
         <link rel="icon" type="image/png" th:href="@{/icons/P.png}">
         <script src="/scripts/confirmDelete.js"></script>
-<!--        <script src="/scripts/tagInput.js"></script>-->
-        <script src="/scripts/tagController.js"></script>
+        <script src="/scripts/flavourTagController.js"></script>
     </head>
     <body>
         <div th:replace="~{_header :: header}"></div>
@@ -119,19 +118,19 @@
 
             // Add a click event listener to the button
             toggleButton.addEventListener("click", function () {
-                // Toggle the text and color of the button
-                isDrink = !isDrink; // Toggle the boolean value
-                toggleButton.textContent = isDrink ? "Drink" : "Food";
-                toggleButton.classList.toggle("toggle-food");
+            // Toggle the text and color of the button
+            isDrink = !isDrink; // Toggle the boolean value
+            toggleButton.textContent = isDrink ? "Drink" : "Food";
+            toggleButton.classList.toggle("toggle-food");
 
-                // Toggle the background image based on the state
-                const drinkImage = '/images/drink_button_background.png';
-                const foodImage = '/images/food_button_background.png';
-                toggleButton.style.backgroundImage = isDrink ? `url('${drinkImage}')` : `url('${foodImage}')`;
+            // Toggle the background image based on the state
+            const drinkImage = '/images/drink_button_background.png';
+            const foodImage = '/images/food_button_background.png';
+            toggleButton.style.backgroundImage = isDrink ? `url('${drinkImage}')` : `url('${foodImage}')`;
 
-                // Update the hidden checkbox input's checked state
-                const checkbox = document.getElementById("isDrinkHidden");
-                checkbox.checked = isDrink;
+            // Update the hidden checkbox input's checked state
+            const checkbox = document.getElementById("isDrinkHidden");
+            checkbox.checked = isDrink;
             });
         </script>
     </body>

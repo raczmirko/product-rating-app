@@ -1,20 +1,37 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const flavourContainer = document.querySelector('.flavour-container');
-  const pagination = document.querySelector('.pagination');
-  const searchBar = document.getElementById('tag-input');
-  const pageSizeSelect = document.getElementById('items-per-page-select');
-  let searchText = searchBar.value != null ? searchBar.value.toLowerCase() : null;
-  let flavoursParamString = '';
-  let flavours = []; // Store flavour data here
-  let pageNumber = 1;
-  let pageSize = parseInt(pageSizeSelect.value); // Parse the initial value
-  // Define an array to store selected flavors (tags)
-  const selectedFlavors = [];
-  const selectedFlavorIDs = [];
-  let url = `/flavours/search?searchText=${searchText}&pageSize=${pageSize}&pageNumber=${pageNumber}&flavours=${flavoursParamString}`;
 
-  // Function to render flavour cards
-  function renderFlavorCards(page) {
+    //------------------------------------|
+    //--------------Variables-------------|
+    //------------------------------------|
+
+    const flavourContainer = document.querySelector('.flavour-container');
+    const pagination = document.querySelector('.pagination');
+    const searchBar = document.getElementById('tag-input');
+    const pageSizeSelect = document.getElementById('items-per-page-select');
+    const form = document.querySelector('form');
+    let searchText = searchBar.value != null ? searchBar.value.toLowerCase() : null;
+    let flavoursParamString = '';
+    let flavours = []; // Store flavour data here
+    let pageNumber = 1;
+    let pageSize = parseInt(pageSizeSelect.value); // Parse the initial value
+    // Define an array to store selected flavors (tags)
+    const selectedFlavors = [];
+    const selectedFlavorIDs = [];
+    let url = `/flavours/search?searchText=${searchText}&pageSize=${pageSize}&pageNumber=${pageNumber}&flavours=${flavoursParamString}`;
+
+    //------------------------------------|
+    //-----------Method calls-------------|
+    //------------------------------------|
+
+    // Initial fetch
+    searchFlavours();
+
+    //------------------------------------|
+    //--------------Functions-------------|
+    //------------------------------------|
+
+    // Function to render flavour cards
+    function renderFlavorCards(page) {
     flavourContainer.innerHTML = ''; // Clear previous cards
     const startIndex = (page - 1) * pageSize;
     const endIndex = startIndex + pageSize;
@@ -26,10 +43,10 @@ document.addEventListener('DOMContentLoaded', function () {
       card.textContent = flavour.name;
       flavourContainer.appendChild(card);
     });
-  }
+    }
 
-  // Function to update pagination controls
-  function updatePagination() {
+    // Function to update pagination controls
+    function updatePagination() {
     pagination.innerHTML = '';
 
     const totalPages = Math.ceil(flavours.length / pageSize);
@@ -88,32 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (pageNumber < totalPages) {
       createPaginationButton('>>', totalPages);
     }
-  }
-
-  function fetchFlavours() {
-    fetch('/flavours/all')
-      .then((response) => response.json())
-      .then((data) => {
-        flavours = data;
-        renderFlavorCards(pageNumber);
-        updatePagination();
-      })
-      .catch((error) => {
-        console.error('Error fetching flavours:', error);
-      });
-  }
-
-  // Initial fetch
-  fetchFlavours();
-
-  // Listen for changes in the <select> element
-  pageSizeSelect.addEventListener('change', function () {
-    // Update the pageSize variable with the selected value
-    pageSize = parseInt(pageSizeSelect.value); // Parse the value as an integer
-    pageNumber = 1; // Reset to the first page when changing items per page
-    renderFlavorCards(pageNumber); // Re-render cards based on the new items per page
-    updatePagination(); // Update pagination controls
-  });
+    }
 
     function searchFlavours() {
         searchText = searchBar.value != null ? searchBar.value.toLowerCase() : null;
@@ -128,23 +120,6 @@ document.addEventListener('DOMContentLoaded', function () {
           console.error('Error fetching flavours:', error);
         });
     }
-
-    // Initial fetch
-    searchFlavours();
-
-    // Listen for changes in the <select> element
-    pageSizeSelect.addEventListener('change', function () {
-      // Update the pageSize variable with the selected value
-      pageSize = parseInt(pageSizeSelect.value); // Parse the value as an integer
-      pageNumber = 1; // Reset to the first page when changing items per page
-      renderFlavorCards(pageNumber); // Re-render cards based on the new items per page
-      updatePagination(); // Update pagination controls
-    });
-
-    // Event listener for input field changes (e.g., user typing)
-    searchBar.addEventListener('input', () => {
-      searchFlavours();
-    });
 
     // Function to add a selected flavor (tag)
     function addSelectedFlavor(flavor) {
@@ -181,22 +156,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-    // Event listener for flavor card clicks
-    flavourContainer.addEventListener('click', (event) => {
-      if (event.target.classList.contains('flavour-card')) {
-        const selectedFlavor = event.target.textContent;
-        const selectedFlavorID = getFlavorIDByName(selectedFlavor);
-
-        // Check if the flavor is not already selected
-        if (!selectedFlavors.includes(selectedFlavor)) {
-          // Add the selected flavor to the list
-          addSelectedFlavor(selectedFlavor);
-          // Add the selected flavor's ID to the IDs list
-          selectedFlavorIDs.push(selectedFlavorID);
-        }
-      }
-    });
-
     // Helper function to get the flavor ID by name
     function getFlavorIDByName(flavorName) {
       // You can search for the flavor ID in your 'flavours' array
@@ -211,8 +170,50 @@ document.addEventListener('DOMContentLoaded', function () {
       selectedFlavorsInput.value = selectedFlavorIDs.join(',');
     }
 
+    //------------------------------------|
+    //-----------Event listeners----------|
+    //------------------------------------|
+
+    // Listen for changes in the <select> element
+    pageSizeSelect.addEventListener('change', function () {
+          // Update the pageSize variable with the selected value
+          pageSize = parseInt(pageSizeSelect.value); // Parse the value as an integer
+          pageNumber = 1; // Reset to the first page when changing items per page
+          renderFlavorCards(pageNumber); // Re-render cards based on the new items per page
+          updatePagination(); // Update pagination controls
+        });
+
+    // Event listener for input field changes (e.g., user typing)
+    searchBar.addEventListener('input', () => {
+      searchFlavours();
+    });
+
+    // Event listener for flavor card clicks
+    flavourContainer.addEventListener('click', (event) => {
+          if (event.target.classList.contains('flavour-card')) {
+            const selectedFlavor = event.target.textContent;
+            const selectedFlavorID = getFlavorIDByName(selectedFlavor);
+
+            // Check if the flavor is not already selected
+            if (!selectedFlavors.includes(selectedFlavor)) {
+              // Add the selected flavor to the list
+              addSelectedFlavor(selectedFlavor);
+              // Add the selected flavor's ID to the IDs list
+              selectedFlavorIDs.push(selectedFlavorID);
+            }
+          }
+    });
+
+    // Listen for changes in the <select> element
+    pageSizeSelect.addEventListener('change', function () {
+    // Update the pageSize variable with the selected value
+    pageSize = parseInt(pageSizeSelect.value); // Parse the value as an integer
+    pageNumber = 1; // Reset to the first page when changing items per page
+    renderFlavorCards(pageNumber); // Re-render cards based on the new items per page
+    updatePagination(); // Update pagination controls
+    });
+
     // Event listener for form submission
-    const form = document.querySelector('form');
     form.addEventListener('submit', () => {
       // Update the hidden input field with selected flavors
       updateSelectedFlavorsInput();
