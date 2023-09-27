@@ -2,6 +2,9 @@ package hu.okrim.productratingapp.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Product {
     @Id
@@ -15,6 +18,8 @@ public class Product {
     @JoinColumn(name = "category")
     private Category category;
     private boolean isDrink;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductFlavour> flavours = new ArrayList<>();
 
     public Product() {
     }
@@ -57,5 +62,10 @@ public class Product {
 
     public void setIsDrink(boolean drink) {
         isDrink = drink;
+    }
+
+    public void removeFlavours() {
+        this.flavours.forEach(flavour -> flavour.setProduct(null));
+        this.flavours.clear();
     }
 }
