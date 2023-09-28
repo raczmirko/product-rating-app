@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const pageSizeSelect = document.getElementById('items-per-page-select');
     const resetFiltersButton = document.getElementById('reset-filters-button');
     const form = document.querySelector('form');
+    const selectedTag = document.querySelector('.selected-tag');
     let searchText = '';
     let products = []; // Store product data here
     let pageNumber = 1;
@@ -123,6 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // Remove any existing selected product tag
       removeSelectedProduct();
 
+
       selectedProduct = productName;
       selectedProductID = productID;
 
@@ -131,7 +133,8 @@ document.addEventListener('DOMContentLoaded', function () {
       const tagElement = document.createElement('span');
       tagElement.textContent = productName;
       tagElement.classList.add('selected-tag');
-
+      // Adding a colour-changing CSS animation to the selected card
+      tagElement.classList.add('color-animation');
       // Add an event listener to remove the tag when clicked
       tagElement.addEventListener('click', () => {
         removeSelectedProduct();

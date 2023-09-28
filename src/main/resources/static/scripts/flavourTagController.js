@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchBar = document.getElementById('tag-input');
     const pageSizeSelect = document.getElementById('items-per-page-select');
     const resetFiltersButton = document.getElementById('reset-filters-button');
+    const selectedTag = document.querySelector('.selected-tag');
     const form = document.querySelector('form');
     let searchText = '';
     let flavours = []; // Store flavour data here
@@ -129,6 +130,8 @@ document.addEventListener('DOMContentLoaded', function () {
       const tagElement = document.createElement('span');
       tagElement.textContent = flavor;
       tagElement.classList.add('selected-tag');
+      // Adding a colour-changing CSS animation to the selected card
+      tagElement.classList.add('color-animation');
 
       // Add an event listener to remove the tag when clicked
       tagElement.addEventListener('click', () => {

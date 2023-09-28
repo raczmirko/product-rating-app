@@ -359,3 +359,28 @@ deleteButton {
   align-items: center; /* Center vertically */
   height: 100%; /* Ensure the container takes up the full height */
 }
+
+/* Define the initial style of the card */
+.selected-tag {
+  background-color: blue;
+  transition: background-color 0.5s ease; /* Define the transition property */
+  cursor: pointer;
+}
+
+/* Define the style when hovering over the selected-tag */
+.selected-tag:hover {
+  background-color: #e74c3c;
+}
+
+/* Define the animation */
+@keyframes colorChange {
+  0% { background-color: green; }
+  40% { background-color: blue; }
+  80% { background-color: #e1bb5d; }
+  100% { background-color: green; }
+}
+
+/* Apply the animation to the selected-tag when a class is added */
+.selected-tag.color-animation {
+  animation: colorChange 5s infinite; /* 3s duration, infinite loop */
+}
