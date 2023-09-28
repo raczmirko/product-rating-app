@@ -34,11 +34,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to render product cards
     function renderProductCards(page) {
     productContainer.innerHTML = ''; // Clear previous cards
-
     products.forEach((product) => {
       const card = document.createElement('div');
       card.classList.add('product-card');
-      card.textContent = product.name;
+      card.textContent = product.name.concat(' (', product.brand.name, ')');
       productContainer.appendChild(card);
     });
     }
