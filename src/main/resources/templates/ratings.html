@@ -30,13 +30,6 @@
             <option th:each="person : ${people}" th:value="${person.id}" th:text="${person.name}"></option>
           </select>
         </div>
-<!--        <div class="form-row">-->
-<!--          <label for="product">Product:</label>-->
-<!--          <select class="width-100" id="product" name="product">-->
-<!--            <option value="" disabled selected>Select Product</option>-->
-<!--            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name + ' (' + product.brand.name + ')'}"></option>-->
-<!--          </select>-->
-<!--        </div>-->
         <hr class="gradient-line">
         <div class="form-row">
           <!-- Hidden input for submitting product flavours with the form -->
@@ -58,7 +51,7 @@
               </select>
             </div>
             <div class="col-33 inline">
-              <button type="button" class="mainButton height-40px col-100">Reset Filters</button>
+              <button type="button" class="mainButton height-40px col-100" id="reset-filters-button">Reset Filters</button>
             </div>
           </div>
           <div class="col-100">

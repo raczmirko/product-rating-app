@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const pagination = document.querySelector('.pagination');
     const searchBar = document.getElementById('tag-input');
     const pageSizeSelect = document.getElementById('items-per-page-select');
+    const resetFiltersButton = document.getElementById('reset-filters-button');
     const form = document.querySelector('form');
     let searchText = '';
     let flavours = []; // Store flavour data here
@@ -214,5 +215,15 @@ document.addEventListener('DOMContentLoaded', function () {
     form.addEventListener('submit', () => {
       // Update the hidden input field with selected flavors
       updateSelectedFlavorsInput();
+    });
+
+    //Event listener for resetting filters
+    resetFiltersButton.addEventListener('click', (event) => {
+        searchText = '';
+        searchBar.value = '';
+        pageSize = 10;
+        pageSizeSelect.value = 10;
+        pageNumber = 1;
+        searchFlavours();
     });
 });
