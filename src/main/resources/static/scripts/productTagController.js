@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const resetFiltersButton = document.getElementById('reset-filters-button');
     const form = document.querySelector('form');
     const selectedTag = document.querySelector('.selected-tag');
+    const selectedProductInput = document.getElementById('product-input');
     let searchText = '';
     let products = []; // Store product data here
     let pageNumber = 1;
@@ -37,7 +38,15 @@ document.addEventListener('DOMContentLoaded', function () {
     products.forEach((product) => {
       const card = document.createElement('div');
       card.classList.add('product-card');
+
+      const hiddenInput = document.createElement('input');
+      hiddenInput.type = 'hidden';
+      hiddenInput.classList.add('item-id');
+      hiddenInput.value = product.id; // Set the value to the item's ID
+
       card.textContent = product.name.concat(' (', product.brand.name, ')');
+
+      card.appendChild(hiddenInput);
       productContainer.appendChild(card);
     });
     }
@@ -123,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function () {
       // Remove any existing selected product tag
       removeSelectedProduct();
 
-
       selectedProduct = productName;
       selectedProductID = productID;
 
@@ -149,17 +157,8 @@ document.addEventListener('DOMContentLoaded', function () {
       selectedTagsContainer.innerHTML = ''; // Clear all tags
     }
 
-    // Helper function to get the product ID by name
-    function getProductIDByName(productName) {
-      // You can search for the product ID in your 'products' array
-      // Assuming that 'products' is an array of objects with 'name' and 'id' properties
-      const product = products.find((product) => product.name === productName);
-      return product ? product.id : null;
-    }
-
     // Function to update the form's hidden input field with selected products (tags)
     function updateSelectedProductInput() {
-      const selectedProductInput = document.getElementById('product-input');
       selectedProductInput.value = selectedProductID;
     }
 
@@ -183,16 +182,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Event listener for product card clicks
     productContainer.addEventListener('click', (event) => {
-      if (event.target.classList.contains('product-card')) {
-        const productName = event.target.textContent;
-        const productID = getProductIDByName(productName);
+        // Find the closest parent with the 'product-card' class
+        const card = event.target.closest('.product-card');
+        if (event.target.classList.contains('product-card')) {
+            const productName = event.target.textContent;
+            const productID = card.querySelector('.item-id').value;
 
-        // Check if the product is not already selected
-        if (productName !== selectedProduct) {
-          // Add the selected product to the list
-          selectProduct(productName, productID);
+            // Check if the product is not already selected
+            if (productName !== selectedProduct) {
+              // Add the selected product to the list
+              selectProduct(productName, productID);
+            }
         }
-      }
     });
 
     // Listen for changes in the <select> element

@@ -40,13 +40,13 @@ public class RatingController {
     @PostMapping("/add-rating")
     public String addRating(
             @RequestParam("person") Person person,
-            @RequestParam("product") Product product,
+            @RequestParam("product") Integer productID,
             @RequestParam("taste") Byte taste,
             @RequestParam("smell") Byte smell,
             @RequestParam(value = "remark", required = false) String remark,
             RedirectAttributes redirectAttributes) {
-
         Date date = new Date();
+        Product product = productService.getProductById(productID);
         // Create a new Product instance and set its properties
         Rating rating = new Rating(person,product,date,taste,smell,remark);
 
