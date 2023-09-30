@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+</head>
+<body>
+    <div class="overlay">
+        <div class="modal" id="modal">
+            <div id="confirmationPopup" class="modal-content" xmlns:th="http://www.w3.org/1999/xhtml">
+                <span class="close">&times;</span>
+                <p id="popup-message" class="message" th:text="${message}">Are you sure you want to perform this action?</p>
+                <div class="button-container">
+                    <button class="btn btn-confirm" id="modal-yes">Confirm</button>
+                    <button class="btn btn-cancel" id="modal-no">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
