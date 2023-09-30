@@ -8,7 +8,8 @@
         <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
         <link rel="icon" type="image/png" th:href="@{/icons/P.png}">
-        <script src="/scripts/confirmDelete.js"></script>
+        <script src="/scripts/confirmDelete.js" defer></script>
+        <script src="/scripts/toggleButtonController.js" defer></script>
         <script src="/scripts/flavourTagController.js"></script>
     </head>
     <body>
@@ -102,36 +103,15 @@
                     <td th:text="${product.category.name}"></td>
                     <td th:text="${product.isDrink} ? 'Yes' : 'No'"></td>
                     <td>
-                        <form th:action="@{/products/delete-product}" method="post" onsubmit="return confirmDelete('product');">
+                        <form id="deletion-form" th:action="@{/products/delete-product}" method="post">
                             <input type="hidden" name="product" th:value="${product.id}" />
-                            <button type="submit" class="deleteButton">Delete</button>
+                            <button type="button" onclick="showModal('product');" class="deleteButton" id="delete-button-product">Delete</button>
                         </form>
                     </td>
                 </tr>
             </table>
         </main>
+        <div th:replace="~{_confirmation-dialog :: body}"></div>
         <div th:replace="~{_footer :: footer}"></div>
-        <script>
-            // Get references to the button and the initial state
-            const toggleButton = document.getElementById("toggleButton");
-            let isDrink = true; // Initial state (true for "Drink")
-
-            // Add a click event listener to the button
-            toggleButton.addEventListener("click", function () {
-            // Toggle the text and color of the button
-            isDrink = !isDrink; // Toggle the boolean value
-            toggleButton.textContent = isDrink ? "Drink" : "Food";
-            toggleButton.classList.toggle("toggle-food");
-
-            // Toggle the background image based on the state
-            const drinkImage = '/images/drink_button_background.png';
-            const foodImage = '/images/food_button_background.png';
-            toggleButton.style.backgroundImage = isDrink ? `url('${drinkImage}')` : `url('${foodImage}')`;
-
-            // Update the hidden checkbox input's checked state
-            const checkbox = document.getElementById("isDrinkHidden");
-            checkbox.checked = isDrink;
-            });
-        </script>
     </body>
 </html>
