@@ -1,7 +1,7 @@
 //--------------------------------------------------------------|
 //-----Script for handling the popup window functionality------//
 //--------------------------------------------------------------|
-function showModal(thingToDelete) {
+function showModal(thingToDelete, index) {
     // Get the modal
     var modal = document.getElementById("modal");
     // Get the text on modal
@@ -12,9 +12,12 @@ function showModal(thingToDelete) {
     modal.style.display = "block";
     // Get the <span> element that closes the modal
     var cancelButton = document.getElementById("modal-no");
-    var confirmButton = document.getElementById("modal-no");
+    var confirmButton = document.getElementById("modal-yes");
     confirmButton.onclick = function() {
-        var deletionForm = document.getElementById("deletion-form");
+        console.log("Just the element: ", document.getElementById("productIndex"));
+        const formID = "deletion-form-".concat(index.current.id);
+        console.log(formID)
+        const deletionForm = document.getElementById(formID);
         deletionForm.submit();
     }
     cancelButton.onclick = function() {

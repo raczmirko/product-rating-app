@@ -96,16 +96,16 @@
                     <th>Category</th>
                     <th>Is Drink?</th>
                 </tr>
-                <tr th:each="product : ${products}">
+                <tr th:each="product, productIndex : ${products}">
                     <td th:text="${product.id}"></td>
                     <td th:text="${product.name}"></td>
                     <td th:text="${product.brand.name}"></td>
                     <td th:text="${product.category.name}"></td>
                     <td th:text="${product.isDrink} ? 'Yes' : 'No'"></td>
                     <td>
-                        <form id="deletion-form" th:action="@{/products/delete-product}" method="post">
-                            <input type="hidden" name="product" th:value="${product.id}" />
-                            <button type="button" onclick="showModal('product');" class="deleteButton" id="delete-button-product">Delete</button>
+                        <form th:id="'deletion-form-' + ${productIndex.current.id}" th:action="@{/products/delete-product}" method="post">
+                            <input type="hidden" name="product" th:value="${product.id}"/>
+                            <button type="button" th:onclick="showModal([[${product.name}]], [[${productIndex}]])" class="deleteButton">Delete</button>
                         </form>
                     </td>
                 </tr>
