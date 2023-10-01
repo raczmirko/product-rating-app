@@ -36,19 +36,20 @@
                     <th>Name</th>
                     <th>Description</th>
                 </tr>
-                <tr th:each="category : ${categories}">
+                <tr th:each="category, categoryIndex : ${categories}">
                     <td th:text="${category.id}"></td>
                     <td th:text="${category.name}"></td>
                     <td th:text="${category.description}"></td>
                     <td>
-                        <form th:action="@{/categories/delete-category}" method="post" onsubmit="return confirmDelete('category');">
+                        <form th:id="'deletion-form-' + ${categoryIndex.current.id}" th:action="@{/categories/delete-category}" method="post">
                             <input type="hidden" name="category" th:value="${category.id}" />
-                            <button type="submit" class="deleteButton">Delete</button>
+                            <button type="button" th:onclick="showModal([[${category.name}]], [[${categoryIndex}]])" class="deleteButton">Delete</button>
                         </form>
                     </td>
                 </tr>
             </table>
         </main>
+        <div th:replace="~{_confirmation-dialog :: body}"></div>
         <div th:replace="~{_footer :: footer}"></div>
     </body>
 </html>
