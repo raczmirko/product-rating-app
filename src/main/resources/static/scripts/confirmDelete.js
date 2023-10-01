@@ -7,7 +7,7 @@ function showModal(thingToDelete, index) {
     // Get the text on modal
     // Get a reference to the message element by its id
     const popupMessage = document.getElementById("popup-message");
-    popupMessage.textContent  = "Are you sure want to delete this".concat(" ", thingToDelete, "?");
+    popupMessage.textContent  = "Are you sure want to delete ".concat(" '", thingToDelete, "'?");
     // When the user clicks the button, open the modal
     modal.style.display = "block";
     // Get the <span> element that closes the modal
