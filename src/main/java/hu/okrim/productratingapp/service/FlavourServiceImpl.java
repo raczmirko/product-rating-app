@@ -2,7 +2,6 @@ package hu.okrim.productratingapp.service;
 
 import hu.okrim.productratingapp.entity.Flavour;
 import hu.okrim.productratingapp.repository.FlavourRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FlavourServiceImpl implements FlavourService{

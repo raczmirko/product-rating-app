@@ -1,7 +1,7 @@
 package hu.okrim.productratingapp.web;
 
-import hu.okrim.productratingapp.entity.Constants;
 import hu.okrim.productratingapp.entity.Brand;
+import hu.okrim.productratingapp.entity.Constants;
 import hu.okrim.productratingapp.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
