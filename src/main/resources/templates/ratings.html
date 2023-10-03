@@ -97,7 +97,7 @@
           <th>Smell</th>
           <th>Remark</th>
         </tr>
-        <tr th:each="rating : ${ratings}">
+        <tr th:each="rating, ratingIndex : ${ratings}">
           <td th:text="${rating.person.name}"></td>
           <td th:text="${rating.product.name}"></td>
           <td th:text="${#dates.format(rating.date, 'yyyy-MM-dd')}"></td>
@@ -105,15 +105,16 @@
           <td th:text="${rating.smell}"></td>
           <td th:text="${rating.remark}"></td>
           <td>
-            <form th:action="@{/ratings/delete-rating}" method="post" onsubmit="return confirmDelete('rating');">
+            <form th:id="${ratingIndex.index}" th:action="@{/ratings/delete-rating}" method="post">
               <input type="hidden" name="personId" th:value="${rating.person.id}" />
               <input type="hidden" name="productId" th:value="${rating.product.id}" />
-              <button type="submit" class="deleteButton">Delete</button>
+              <button type="button" class="deleteButton" th:onclick="showModal('rating', [[${rating.product.name}]] + ' - ' + [[${rating.person.name}]], [[${ratingIndex.index}]])">Delete</button>
             </form>
           </td>
         </tr>
       </table>
     </main>
+    <div th:replace="~{_confirmation-dialog :: body}"></div>
     <div th:replace="~{_footer :: footer}"></div>
   </body>
 </html>
