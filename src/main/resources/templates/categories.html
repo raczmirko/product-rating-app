@@ -43,7 +43,7 @@
                     <td>
                         <form th:id="'deletion-form-' + ${categoryIndex.current.id}" th:action="@{/categories/delete-category}" method="post">
                             <input type="hidden" name="category" th:value="${category.id}" />
-                            <button type="button" th:onclick="showModal([[${category.name}]], [[${categoryIndex}]])" class="deleteButton">Delete</button>
+                            <button type="button" th:onclick="showModal('category', [[${category.name}]], [[${categoryIndex}]])" class="deleteButton">Delete</button>
                         </form>
                     </td>
                 </tr>

@@ -105,7 +105,7 @@
                     <td>
                         <form th:id="'deletion-form-' + ${productIndex.current.id}" th:action="@{/products/delete-product}" method="post">
                             <input type="hidden" name="product" th:value="${product.id}"/>
-                            <button type="button" th:onclick="showModal([[${product.name}]], [[${productIndex}]])" class="deleteButton">Delete</button>
+                            <button type="button" th:onclick="showModal('product', [[${product.name}]], [[${productIndex}]])" class="deleteButton">Delete</button>
                         </form>
                     </td>
                 </tr>

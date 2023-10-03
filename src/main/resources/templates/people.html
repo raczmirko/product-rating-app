@@ -39,7 +39,7 @@
                     <td>
                         <form th:id="'deletion-form-' + ${personIndex.current.id}" th:action="@{/people/delete-person}" method="post">
                             <input type="hidden" name="person" th:value="${person.id}" />
-                            <button type="button" th:onclick="showModal([[${person.name}]], [[${personIndex}]])" class="deleteButton">Delete</button>
+                            <button type="button" th:onclick="showModal('person', [[${person.name}]], [[${personIndex}]])" class="deleteButton">Delete</button>
                         </form>
                     </td>
                 </tr>
