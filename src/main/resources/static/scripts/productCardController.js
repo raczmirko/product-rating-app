@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
     resetFiltersButton.addEventListener('click', (event) => {
         searchText = '';
         searchBar.value = '';
-        pageSize = 10;
+        pageSize = 15;
         pageSizeSelect.value = 10;
         pageNumber = 1;
         searchProducts();
