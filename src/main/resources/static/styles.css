@@ -462,3 +462,28 @@ deleteButton {
     text-decoration: none;
     cursor: pointer;
 }
+
+.product-card-static {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center the content */
+  align-items: center; /* Horizontally center the content */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: calc(20% - 20px); /* Set the width to 20% minus some margin */
+  text-align: center; /* Center text horizontally */
+}
+
+
+.product-card-static:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  cursor: pointer;
+  background: #B54442;
+}

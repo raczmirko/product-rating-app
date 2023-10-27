@@ -11,6 +11,7 @@
         <script src="/scripts/confirmDelete.js" defer></script>
         <script src="/scripts/toggleButtonController.js" defer></script>
         <script src="/scripts/flavourTagController.js"></script>
+        <script src="/scripts/productCardController.js"></script>
     </head>
     <body>
         <div th:replace="~{_header :: header}"></div>
@@ -88,28 +89,41 @@
             </form>
             <hr class="gradient-line">
             <h3>Products already in the database:</h3>
-            <table>
-                <tr class="head">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Brand</th>
-                    <th>Category</th>
-                    <th>Is Drink?</th>
-                </tr>
-                <tr th:each="product, productIndex : ${products}">
-                    <td th:text="${product.id}"></td>
-                    <td th:text="${product.name}"></td>
-                    <td th:text="${product.brand.name}"></td>
-                    <td th:text="${product.category.name}"></td>
-                    <td th:text="${product.isDrink} ? 'Yes' : 'No'"></td>
-                    <td>
-                        <form th:id="${productIndex.index}" th:action="@{/products/delete-product}" method="post">
-                            <input type="hidden" name="product" th:value="${product.id}"/>
-                            <button type="button" th:onclick="showModal('product', [[${product.name}]], [[${productIndex.index}]])" class="deleteButton">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            </table>
+            <hr class="gradient-line">
+            <div class="form-row">
+                <div class="col-100">
+                    <div class="col-33 inline">
+                        <input class="height-40px col-100" type="text" id="product-searchbar" placeholder="Search for products">
+                    </div>
+                    <div class="col-33 inline">
+                        <select id="products-per-page-select" class="height-40px col-100">
+                            <option>5</option>
+                            <option>10</option>
+                            <option selected>15</option>
+                            <option>20</option>
+                            <option>25</optionselected>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
+                    </div>
+                    <div class="col-33 inline">
+                        <button type="button" class="mainButton height-40px col-100" id="reset-product-filters-button">Reset Filters</button>
+                    </div>
+                </div>
+                <div class="col-100">
+                    <div class="product-container col-100">
+                        <!-- Product Cards will be rendered here -->
+                    </div>
+                </div>
+                <div class="col-100">
+                    <div class="pagination-container">
+                        <div id="product-pagination" class="pagination">
+                            <!-- Pagination controls will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="gradient-line">
         </main>
         <div th:replace="~{_confirmation-dialog :: body}"></div>
         <div th:replace="~{_footer :: footer}"></div>
