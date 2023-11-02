@@ -5,7 +5,7 @@ FROM adoptopenjdk:11-jre-hotspot-bionic
 WORKDIR /app
 
 # Copy the JAR file into the container
-COPY target/ProductRatingApp.jar app.jar
+COPY target/ProductRatingApp-1.2.1.jar app.jar
 
 # Expose the port your Spring Boot app is running on
 EXPOSE 8080
