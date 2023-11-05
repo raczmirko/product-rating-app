@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>hu.okrim</groupId>
 	<artifactId>ProductRatingApp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.2.1</version>
 	<name>ProductRatingApp</name>
 	<description>An app for rating food and drink products.</description>
 	<properties>
@@ -33,9 +33,8 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<scope>runtime</scope>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
