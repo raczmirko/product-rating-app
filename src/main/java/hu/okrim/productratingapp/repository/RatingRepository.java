@@ -17,4 +17,6 @@ public interface RatingRepository extends CrudRepository<Rating, RatingId> {
 
    @Query("SELECT r FROM Rating r WHERE r.person = :person AND r.product = :product")
    Rating findById(@Param("person") Person person, @Param("product") Product product);
+
+   List<Rating> findAllByOrderByDateDesc();
 }

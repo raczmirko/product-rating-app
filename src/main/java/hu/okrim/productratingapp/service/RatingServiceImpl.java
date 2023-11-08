@@ -28,9 +28,7 @@ public class RatingServiceImpl implements RatingService{
     @Override
     public List<Rating> getAllRatings() {
         List<Rating> ratingList = new ArrayList<>();
-        for (Rating rating: ratingRepository.findAll()) {
-            ratingList.add(rating);
-        }
+        ratingList.addAll(ratingRepository.findAllByOrderByDateDesc());
         return ratingList;
     }
 
