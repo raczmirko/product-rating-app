@@ -122,7 +122,7 @@ deleteButton {
     height: 40px;
     border: none;
     cursor: pointer;
-    color: #000000;
+    color: white;
     font-weight: bold;
     font-size: 20px;
     background-color: transparent; /* Set a transparent background */
@@ -234,8 +234,8 @@ deleteButton {
   flex-direction: column;
   justify-content: center; /* Vertically center the content */
   align-items: center; /* Horizontally center the content */
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: green;
+  border: 1px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 10px;
@@ -243,6 +243,7 @@ deleteButton {
   transition: transform 0.2s, box-shadow 0.2s;
   width: calc(20% - 20px); /* Set the width to 20% minus some margin */
   text-align: center; /* Center text horizontally */
+  color: white;
 }
 
 
@@ -279,8 +280,8 @@ deleteButton {
   flex-direction: column;
   justify-content: center; /* Vertically center the content */
   align-items: center; /* Horizontally center the content */
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: green;
+  border: 1px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 10px;
@@ -288,6 +289,7 @@ deleteButton {
   transition: transform 0.2s, box-shadow 0.2s;
   width: calc(20% - 20px); /* Set the width to 20% minus some margin */
   text-align: center; /* Center text horizontally */
+  color: white;
 }
 
 
@@ -401,7 +403,7 @@ deleteButton {
 
 /* Modal Content */
 .modal-content {
-    background-color: #fefefe;
+    background-color: #0d1117;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
@@ -468,8 +470,8 @@ deleteButton {
   flex-direction: column;
   justify-content: center; /* Vertically center the content */
   align-items: center; /* Horizontally center the content */
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: green;
+  border: 1px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 10px;
@@ -477,6 +479,7 @@ deleteButton {
   transition: transform 0.2s, box-shadow 0.2s;
   width: calc(20% - 20px); /* Set the width to 20% minus some margin */
   text-align: center; /* Center text horizontally */
+  color: white;
 }
 
 
